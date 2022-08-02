@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--     ticket tree view-->
+    <record id="ticket_tree_view" model="ir.ui.view">
+        <field name="name">hd.ticket.tree</field>
+        <field name="model">hd.ticket</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!--                <field name="doc_num"/>-->
+            </tree>
+        </field>
+    </record>
+    <!--    ######################################################################-->
+    <!--                ticket form view-->
+    <record id="ticket_form_view" model="ir.ui.view">
+        <field name="name">hd.ticket.form</field>
+        <field name="model">hd.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_new" string="New" type="object" states="draft"
+                            class="btn-primary"/>
+                    <button name="action_in_progress" string="In Progress" type="object" states="new"
+                            class="btn-primary"/>
+                    <!--                            groups="apprasial.group_hd_team_leader"/>-->
+                    <button name="action_solved" string="Solved" type="object" states="in_progress"
+                            class="btn-primary"/>
+                    <!--                            groups="apprasial.group_hd_manager"/>-->
+                    <button name="action_cancel" states="new,in_progress,solved" type="object" string="Cancel"
+                            class="btn-primary"/>
+                    <button name="action_draft" states="cancel" type="object" string="Set to Draft"
+                            class="btn-primary"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,new,in_progress,solved"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ticket_id" readonly="1"/>
+                            <field name="name" />
+                        </group>
+
+                        <group>
+                            <field name="date"/>
+                            <field name="time_submitted"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="team_id"/>
+                        </group>
+                        <group>
+                            <field name="assign_to_id"/>
+                            <field name="priority" widget="priority"/>
+                        </group>
+                        <group>
+                            <field name="customer_id"/>
+                            <!-- <field name="partner_name"/> -->
+                        </group>
+                        <group>
+                            <!-- <field name="partner_email"/> -->
+                            <field name="customer_phone"/>
+                        </group>
+                        <group>
+                            <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="hosting_type"/>
+                        </group>
+                        <group>
+                            <field name="server_url" widget="url"/>
+                            <!--                            <field name="customer_name"/>-->
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

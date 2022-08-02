@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--     ticket tree view-->
+    <record id="team_tree_view" model="ir.ui.view">
+        <field name="name">hd.team.tree</field>
+        <field name="model">hd.team</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="team_name"/>
+            </tree>
+        </field>
+    </record>
+    <!--     ticket tree view-->
+    <record id="team_tree_view" model="ir.ui.view">
+        <field name="name">hd.tags.tree</field>
+        <field name="model">hd.tags</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tag_name" class="text_value_color"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hd_ticket,hd.ticket,model_hd_ticket,base.group_user,1,1,1,1
+access_hd_team,hd.ticket,model_hd_team,base.group_user,1,1,1,1
+access_hd_tags,hd.tags,model_hd_tags,,1,1,1,1
+access_hd_ticket_wiz,hd.ticket.wiz,model_hd_ticket_wiz,,1,1,1,1

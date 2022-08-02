@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+         <report id="report_abu_elfadil_report"
+            string="Tickets"
+            model="hd.ticket"
+            report_type="qweb-pdf"
+            name="hd_ticket.ticket_reports"
+            file="hd_ticket.ticket_reports"/>
+
+    <template id="ticket_reports">
+     
+         <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="oe_structure">
+                        <div class="article mt0 o_report_layout_standard" dir="ltr"> 
+                        <h2 style='text-align:center;'>Tickets per Team PDF </h2>
+                                <table class="table table-condensed table-bordered">
+                                    <thead>
+                                        <th class="text-right" style="width: 20%;">Ticket ID</th>
+
+                                        <th class="text-right" style="width: 20%;">Name</th>
+                                      
+                                        <th class="text-right" style="width: 10%;">Time Submitted</th>
+                                         <th class="text-right" style="width: 10%;">Priority</th>
+                                         <th class="text-right" style="width: 10%;">Resolution Time</th>
+                                         
+                                    
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr t-foreach="o.cash_box" t-as="line">
+                                            <td class="text-right">
+                                                <span t-esc="line.subtotal"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="line.number"/>
+                                            </td>
+                                            <td class="text-right"
+                                                ><span t-esc="line.coin_value"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="i"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="i"/>
+                                            </td>
+                                            
+                                        </tr>
+                                    </tbody>
+
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+               </t>
+           </t>
+       </template>
+   </odoo>
+    

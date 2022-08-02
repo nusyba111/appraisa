@@ -1,0 +1,110 @@
+<odoo>
+    <data>
+        <!--  #############################33-->
+        <!--             <!-hd_help_team_action&ndash;&gt;-->
+        <record id="hd_help_team_action" model="ir.actions.act_window">
+            <field name="name">Help Desk Team</field>
+            <field name="res_model">hd.team</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p calass="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+        <record id="helpdesk_ticket_view_form" model="ir.ui.view">
+        <field name="name">hd.ticket.form</field>
+        <field name="model">hd.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Helpdesk Ticket">
+                <header>
+                    <field name="is_self_assigned" invisible="1"/>
+                    <button name="assign_ticket_to_self" string="Assign To Me" type="object" class="oe_highlight" groups="helpdesk.group_helpdesk_user" attrs="{'invisible': [('is_self_assigned', '=', True)]}"/>
+                    <field name="stage_id" widget="statusbar"
+                        options="{'clickable': '1', 'fold_field': 'fold'}"/>
+                </header>
+            </form>
+        </field>
+    </record>
+
+        <!--             <!-hd_help_ticket_action-->
+       <!--  <record id="hd_help_ticket_action" model="ir.actions.act_window">
+            <field name="name">Help Desk Ticket</field>
+            <field name="res_model">hd.ticket</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p calass="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record> -->
+        <!-- team action -->
+        <!-- <record id="hd_help_team_action" model="ir.actions.act_window">
+            <field name="name">Help Desk Team</field>
+            <field name="res_model">hd.team</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p calass="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record> -->
+        <!-- tag action -->
+         <record id="hd_tag_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">hd.tags</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p calass="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+        <!-- ticket actions -->
+        <record id="all_tickets_action" model="ir.actions.act_window">
+            <field name="name">All Tickets</field>
+            <field name="res_model">hd.ticket</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p calass="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+        <record id="my_tickets_action" model="ir.actions.act_window">
+            <field name="name">My Tickets</field>
+            <field name="res_model">hd.ticket</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p calass="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+        <menuitem id="main_root" name="Nusiba Help Desk" sequence="1" web_icon="/home/iatl/Desktop/odoo/helpdesk_nusiba/apprasial_nusiba/static/description/icon.png"/>
+        
+<!-- tickets menu -->
+        <menuitem id="ticket_menu" sequence="2"
+                  name="Tickets" parent="main_root"/>
+         <menuitem id="all_tickets_menu" sequence="6"
+                  name="All Tickets" parent="ticket_menu"
+                  action="all_tickets_action"/>
+        <menuitem id="my_tickets_menu" sequence="7"
+                  name="My Tickets" parent="ticket_menu"
+                  action="my_tickets_action"/>
+
+        <!--            configuration menu-->
+        <menuitem id="conf_sub_root" sequence="3"
+                  name="Configuration" parent="main_root"/>
+           <menuitem id="ticket_team_menu" sequence="3"
+                  name="Help Desk Team" parent="conf_sub_root"
+                  action="hd_help_team_action"/>
+                  <menuitem id="tag_menu" sequence="4"
+                  name="Tags" parent="conf_sub_root"
+                  action="hd_tag_action"/>
+        <menuitem id="report_root" sequence="3"
+                  name="Reports" parent="main_root"/>
+
+
+    </data>
+</odoo>
