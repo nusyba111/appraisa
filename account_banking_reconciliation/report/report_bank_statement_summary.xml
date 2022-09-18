@@ -1,0 +1,205 @@
+<odoo>
+    <data>
+        <!-- template report   -->
+
+        <template id="bank_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <!--  Bank Reconciliation  -->
+                            <p style='text-align:center;'><strong>Bank Reconciliation</strong></p>
+                            <div class="row" id="journal_information">
+
+                                <div class="col-8">
+                                    <!--  Bank Account: -->
+                                    <div class="text-left">
+                                        <strong>Bank Account:</strong>
+                                        <p t-field="o.account_id"/>
+                                    </div>
+                                    <div name="th_date" class="text-left"><strong>Ending Date</strong>
+                                        <p t-field="o.ending_date"/>
+                                    </div>
+                                </div>
+
+                                <!-- .................Starting.ending Balance............... -->
+                                <div class="col-8">
+                                    <div name="th_date" class="text-left"><strong>Starting Balance</strong>
+                                        <p t-field="o.starting_balance"/>
+                                    </div>
+                                    <div name="ending_balanc" class="text-left"><strong>Ending Balance</strong>
+                                        <p t-field="o.ending_balance"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ...Deposit/Transfer in Transit..-->
+
+                            <div>
+                                <span><strong>Deposit/Transfer in Transit:</strong></span>
+                                <table class="table table-sm o_main_table">
+                                    <thead>
+                                        <tr>
+                                            <th name="th_date"><strong>Date</strong></th>
+                                            <th name="th_name"><strong>Name</strong></th>
+                                            <th name="th_reference" class="text-center"><strong>Reference</strong></th>
+                                            <th name="th_amount_inc_urrency" class="text-right"><strong>Amount in Currency</strong></th>
+                                            <th name="th_currency" class="text-right"><strong>Currency
+                                            </strong>
+                                            </th>
+                                            <th name="th_journal_item" class="text-right"><strong>Journal Item</strong></th>
+                                        </tr>
+                                    </thead><br><br></br></br>
+
+                                    <tbody>
+                                        <tr t-foreach="o.debit_move_line_ids" t-as="line"
+                                            t-if=" not line.cleared_bank_account">
+
+                                            <td>
+                                                <span t-field="line.date"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.ref"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.amountcur"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.currency_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.move_line_id"/>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                                <br><br></br></br>
+                                <!-- ......................Outstanding Payments:.............-->
+                                <!-- Outstanding Payments -->
+                                <span><strong>Outstanding Payments:</strong></span>
+                                <table class="table table-sm o_main_table">
+                                    <thead>
+                                        <tr>
+                                            <th name="th_date"><strong>Date</strong></th>
+                                            <th name="th_name"><strong>Name</strong></th>
+                                            <th name="th_reference" class="text-center"><strong>Reference</strong></th>
+                                            <th name="th_amount_inc_urrency" class="text-right"><strong>Amount in Currency</strong></th>
+                                            <th name="th_currency" class="text-right"><strong>Currency
+                                            </strong>
+                                            </th>
+                                            <th name="th_journal_item" class="text-right"><strong>Journal Item</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="o.credit_move_line_ids" t-as="linee"
+                                            t-if=" not linee.cleared_bank_account">
+
+                                            <td>
+                                                <span t-field="linee.date"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="linee.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="linee.ref"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="linee.amountcur"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="linee.currency_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="linee.move_line_id"/>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- .................Balances....................... -->
+
+                            <br><br></br></br>
+                            <div>
+                                <table class="table table-sm o_main_table">
+                                    <thead>
+<!--                                        <tr>-->
+<!--                                            <th> <strong>Balances</strong></th>-->
+<!--                                        </tr>-->
+                                        <tr>
+                                            <th> <strong>Cleared Balances</strong></th>
+                                        </tr>
+                                        <tr>
+                                            <th name="th_c_balance_cur"><span>Cleared Balance (Cur)</span></th>
+                                            <th name="th_c_balance"><span t-field="o.cleared_balance_cur"/></th>
+                                            <th name="th_unc"><span>UnCleared Balance (Cur)</span></th>
+                                            <th name="th_unc_b"><span t-field="o.uncleared_balance_cur"/></th>
+                                        </tr>
+
+                                        <tr>
+                                            <th name="th_dif"><span>Difference (Cur)</span></th>
+                                            <th name="th_diff"><span t-field="o.difference_cur"/></th>
+                                        </tr>
+
+                                    </thead>
+                                </table>
+                                <br><br><br></br></br></br>
+
+                                <table class="table table-sm o_main_table">
+                                    <thead>
+
+                                        <tr>
+                                            <th> <strong>Prepared By:</strong></th>
+                                            <th> <strong>Checked By::</strong></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+    </data>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

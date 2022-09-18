@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_access_ledger_report,access_ledger_report,srcs_accounting_reports.model_ledger_report,base.group_user,1,1,1,1
+access_access_ledger_report_excel,access_ledger_report_excel,srcs_accounting_reports.model_ledger_report_excel,base.group_user,1,1,1,1
+access_project_wizard,project.report.wizard,srcs_accounting_reports.model_project_report_wizard,,1,1,1,1
+access_budget_report_wizard,access_access_budget_report_wizard,model_budget_report_wizard,base.group_user,1,1,1,1

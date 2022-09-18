@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+    <record id="inherit_view_account_srcs" model="ir.ui.view">
+        <field name="name">account.move.view.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,finance_direct,secratry_general,posted"/>
+            </xpath>
+             <!-- <button name="button_draft" string="Reset to Draft" type="object" groups="account.group_account_invoice"
+                                attrs="{'invisible' : [('show_reset_to_draft_button', '=', False)]}" data-hotkey="q" /> -->
+            <xpath expr="//button[@name='button_draft']" position="attributes">
+                <attribute name="attrs">{'invisible':[('show_reset_to_draft_button', '=', False),('state','!=','secratry_general')]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_post']" position="after">
+                <button string="Approve Finance" name="approve_finance" type="object" class="oe_highlight" states="draft"/>
+                <button string="Approve Secratry" name="approve_secratry" type="object" class="oe_highlight" states="finance_direct"/>   
+            </xpath>
+            
+            <xpath expr="//button[@name='action_post'][2]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|','|',('state', 'not in', 'secratry_general'), ('auto_post', '=', True), ('move_type', '=', 'entry'),('display_inactive_currency_warning','=',True)]}</attribute>
+
+            </xpath>
+            <xpath expr="//button[@name='action_post'][1]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|',('state', 'not in', 'secratry_general'), ('auto_post', '=', True), ('move_type', '!=', 'entry')]}</attribute>
+
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='analytic_account_id']" position="replace">
+                <field name="project" invisible="1"/>
+                <field name="analytic_account_id" string="Project" domain="[('type','=','project')]" attrs="{'required':[('project','=',True)]}"/> 
+            </xpath>
+            <xpath expr="//div[hasclass('o_td_label')]" position="replace">
+                <field name="expensse_asset" invisible="1"/>
+                <div class="o_td_label">
+                    <label for="partner_id" string="Donor" style="font-weight:bold;" attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                    <label for="partner_id" string="Vendor" style="font-weight:bold;" attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"/>
+                </div>
+            </xpath>
+            
+            <xpath expr="//field[@name='line_ids']/tree//field[@name='partner_id']" position="replace">
+                <field name="donor_bool" invisible="1" />
+                <field name="partner_id" string="Donor" domain="['|', ('parent_id', '=', False), ('is_company', '=', True)]" attrs="{'column_invisible': [('parent.move_type', '!=', 'entry')],'required':[('donor_bool','=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree//field[@name='analytic_account_id']" position="replace">
+               <field name="project" invisible="1"/>
+               <field name="analytic_account_id" string="Project " optional="hide" domain="[('type','=','project')]" attrs="{'required':[('project','=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='account_id']" position="after">
+                <field name="activity" invisible="1"/>
+                <field name="location" invisible="1"/>
+                <field name="activity_id" attrs="{'required':[('activity','=',True)]}"/>
+                <field name="location_id" attrs="{'required':[('location','=',True)]}"/>
+                <!-- <field name="amount_from_conversion" /> -->
+            </xpath>
+             <xpath expr="//field[@name='line_ids']/tree//field[@name='account_id']" position="after">
+                <field name="activity" invisible="1"/>
+                <field name="location" invisible="1"/>
+                <field name="activity_id" attrs="{'required':[('activity','=',True)],'column_invisible': [('parent.move_type', '!=', 'entry')]}" />
+                <field name="location_id" attrs="{'required':[('location','=',True)],'column_invisible': [('parent.move_type', '!=', 'entry')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/form//field[@name='analytic_account_id']" position="replace">
+                <field name="analytic_account_id" string="Project" groups="analytic.group_analytic_accounting"/>
+                <field name="activity_id"/>
+                <field name="location_id" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/form//field[@name='analytic_account_id']" position="replace">
+                <field name="analytic_account_id" string="Project" groups="analytic.group_analytic_accounting"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="attributes">
+                <attribute name="string">Amount</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- <record id="inherit_view_id_srcs_account_move_tree" model="ir.ui.view">
+        <field name="name">account.move.tree.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_partner_display_name']" position="replace">
+                <field name="invoice_partner_display_name" invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')" groups="base.group_user" string="Vendor" />
+                <field name="invoice_partner_display_name" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')" groups="base.group_user" string="Donor" />
+            </xpath>
+        </field>
+    </record> -->
+    <record id="inherit_view_id_srcs_account_move_tree_2" model="ir.ui.view">
+        <field name="name">account.move.tree.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_partner_display_name']" position="replace">
+                <field name="invoice_partner_display_name" invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')" groups="base.group_user" string="Vendor" />
+                <field name="invoice_partner_display_name" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')" groups="base.group_user" string="Donor" />
+            </xpath>
+        </field>
+    </record>
+    <!-- <record id="account.view_out_invoice_tree" model="ir.ui.view">
+        <field name="name">account.out.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="accounting_srcs.inherit_view_id_srcs_account_move_tree_2"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="banner_route">/account/account_invoice_onboarding</attribute>
+            </xpath>
+            <field name="currency_id" position="attributes">
+                <attribute name="string">Invoice Currency</attribute>
+            </field>
+        </field>
+    </record> -->
+  
+    <record model="ir.actions.act_window" id="account.action_move_out_invoice_type">
+        <field name='name'>Vouchers</field>
+    </record>
+   
+    <record id="srcs_tree_account_analytic_line_inherit_module_name" model="ir.ui.view">
+        <field name="name">account.analytic.line.view.tree.inherit</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='account_id']" position="replace">
+                <field name="account_id" string="Project"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="srcs_form_account_analytic_line_inherit_module_name" model="ir.ui.view">
+        <field name="name">account.analytic.line.view.form.inherit</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='account_id']" position="replace">
+                <field name="account_id" string="Project"/>
+            </xpath>
+            <xpath expr="//group[@name='analytic_entry']" position="attributes">
+                <attribute name="string">Project Entry</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="inherit_view_id_srcs_account_move_line" model="ir.ui.view">
+        <field name="name">account.move.line.view.form.inherit</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_currency']" position="after">
+                <field name="amount_from_conversion" />
+                <field name="amount_in_company_currency" />
+            </xpath>
+            <xpath expr="//field[@name='analytic_account_id']" position="replace">
+                <group string="Project" groups="analytic.group_analytic_accounting,analytic.group_analytic_tags">
+                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting" string="Project" domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]" readonly="1"/>
+                    <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags"/>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='analytic_lines']" position="replace">
+                <page string="Project Lines" name="analytic_lines" groups="analytic.group_analytic_accounting">
+                    <field name="date" invisible="1"/>
+                        <field name="analytic_line_ids" context="{'tree_view_ref':'analytic.view_account_analytic_line_tree', 'default_general_account_id':account_id, 'default_name': name, 'default_date':date, 'amount': (debit or 0.0)-(credit or 0.0)}"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="analytic.account_analytic_line_action_entries">
+        <field name="name">Project Items</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">tree,kanban,form,graph,pivot</field>
+        <field name="view_id" ref="analytic.view_account_analytic_line_tree"/>
+        <field name="search_view_id" ref="analytic.view_account_analytic_line_filter"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+            No activity yet
+            </p><p>
+            In Odoo, sales orders and projects are implemented using
+            analytic accounts. You can track costs and revenues to analyse
+            your margins easily.
+            </p><p>
+            Costs will be created automatically when you register supplier
+            invoices, expenses or timesheets.
+            </p><p>
+            Revenues will be created automatically when you create customer
+            invoices. Customer invoices can be created based on sales orders
+            (fixed price invoices), on timesheets (based on the work done) or
+            on expenses (e.g. reinvoicing of travel costs).
+            </p>
+        </field>
+    </record>
+    <record id="account_reports.action_account_report_analytic" model="ir.actions.client">
+        <field name="name">Project Report</field>
+        <field name="tag">account_report</field>
+        <field name="context" eval="{'model': 'account.analytic.report'}" />
+    </record>
+    <record id="account.action_account_moves_journal_sales" model="ir.actions.act_window">
+        <field name="name">Revenues</field>
+    </record>
+    <record id="product.product_category_action_form" model="ir.actions.act_window">
+        <field name="name">Items Categories</field>
+    </record>
+    <record id="account.action_account_payments" model="ir.actions.act_window">
+        <field name="name">Receipt</field>
+    </record>
+</odoo>

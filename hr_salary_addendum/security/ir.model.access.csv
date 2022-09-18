@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_salary_addendum_user,hr_salary_addendum,model_hr_salary_addendum,hr.group_hr_manager,1,1,1,0
+access_salary_plan_addendum_user,salary_plan_addendum,model_salary_plan_addendum,hr.group_hr_manager,1,1,1,0
+
+
+

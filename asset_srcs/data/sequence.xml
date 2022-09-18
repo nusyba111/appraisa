@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sequence_asset_operation" model="ir.sequence">
+        <field name="name">Asset Operation</field>
+        <field name="code">asset.operation</field>
+        <field name="prefix">Asset Operation/</field>
+        <field name="padding">3</field>
+        <field eval="False" name="company_id"/>
+    </record> 
+
+</odoo>

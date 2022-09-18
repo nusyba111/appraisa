@@ -1,0 +1,13 @@
+<odoo>
+	<data>
+        <record id="action_report_hr_assigment_customer" model="ir.actions.report">
+            <field name="name">HR Assigment Report</field>
+            <field name="model">hr.assigment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_assignment.hr_assingment_report_template</field>
+            <field name="report_file">hr_assignment.hr_assingment_report_template</field>
+            <field name="binding_model_id" ref="hr_assignment.model_hr_assigment"/>
+            <field name="binding_type">report</field>
+        </record>
+	</data>
+</odoo>

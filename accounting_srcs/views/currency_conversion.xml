@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="currency_conversion_view_form" model="ir.ui.view">
+        <field name="name">currency.conversion.view.form</field>
+        <field name="model">currency.conversion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Confirm" name="confirm" type="object" class="oe_highlight" states="draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                       <group>
+                           
+                            <field name="budget_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+<<<<<<< HEAD
+=======
+                            <field name="budget_limit" />
+                            <!-- <field name="budget_currency" invisible="1" /> -->
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                            <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <!-- <label for="amount"/>
+                            <div class="o_row">
+                                <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </div> -->
+                            <field name="company_currency" invisible="1"/>
+<<<<<<< HEAD
+                            <field name="currency_id" options="{'no_create': True, 'no_open': True}" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="base.group_multi_currency"/>
+=======
+                            <field name="currency_id" options="{'no_create': True, 'no_open': True}" required="1"  groups="base.group_multi_currency"  force_save="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                            <field name="rate" />
+                       </group>
+                       <group>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+<<<<<<< HEAD
+                            <field name="remain_amount_sdg" force_save="1"/>
+                            <field name="remain_amount" force_save="1"/>
+=======
+                            <field name="remain_amount_sdg" force_save="1" />
+                            <field name="remain_amount"  force_save="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                       </group>
+                    </group>
+                    <notebook>
+                        <page string="Accounting">
+                            <group col="6">
+                                
+                                <field name="source_bank" domain="[('type', 'in', ('bank', 'cash'))]" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="dest_bank" domain="[('type', 'in', ('bank', 'cash'))]" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                               
+                            </group> 
+                            <group>
+                                <group> 
+                                    <field name="internal_transfer_id" />
+                                </group>
+                            </group>
+                            
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="currency_conversion_view_tree" model="ir.ui.view">
+        <field name="name">currency.conversion.view.tree</field>
+        <field name="model">currency.conversion</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="name" />
+                <field name="source_bank" />
+                <field name="dest_bank" />
+                <field name="amount" />
+                <field name="remain_amount" />
+                <field name="rate" />
+                <field name="remain_amount_sdg" />
+                <field name="currency_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="currency_conversion_action_view_name" model="ir.actions.act_window">
+        <field name="name">Currency Conversion</field>
+        <field name="res_model">currency.conversion</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="currency_conversion_view_tree"/>
+        <field name="help" type="xml">
+            <p class="o_view_nocontent_smiling_face">
+                Click to create a new budget.
+            </p>
+            <p>
+                Use budgets to compare actual with expected revenues and costs
+            </p>
+        </field>
+    </record>
+<<<<<<< HEAD
+    
+
+=======
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+</odoo>

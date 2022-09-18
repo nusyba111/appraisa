@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_wizard_card" model="ir.ui.view">
+            <field name="name">wizard.card.report</field>
+            <field name="model">pin.card</field>
+            <field name="arch" type="xml">
+                <form string="PIN Card Report">
+                    <group col="4">
+                        <field name="location"/>
+                        <field name="product_id"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_view_card" model="ir.actions.act_window">
+            <field name="name">PIN Card Report</field>
+            <field name="res_model">pin.card</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_card"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_view_card" name="PIN Card Report" id="menu_card_report"
+                  parent="stock.menu_warehouse_report"/>
+
+
+    </data>
+</openerp>

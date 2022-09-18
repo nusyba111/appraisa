@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_wizard_warehouse" model="ir.ui.view">
+            <field name="name">wizard.warehouse.report</field>
+            <field name="model">warehouse.report</field>
+            <field name="arch" type="xml">
+                <form string="Warehouse Report">
+
+                    <group col="4">
+                        <field name="location"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+
+                    <footer>
+                        <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_warehouse_excel">
+            <field name="name">view.warehouse.report.excel</field>
+            <field name="model">warehouse.report.excel</field>
+            <field name="arch" type="xml">
+                <form string="File to Downloads">
+                    <field name="name" invisible="1"/>
+                    <field name="file_download" filename="name"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_warehouse" model="ir.actions.act_window">
+            <field name="name">Warehouse Report</field>
+            <field name="res_model">warehouse.report</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_warehouse"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_view_warehouse" name="Warehouse Report" id="menu_warehouse_report"
+                  parent="stock.menu_warehouse_report"/>
+
+
+    </data>
+</openerp>

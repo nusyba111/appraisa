@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+         <report id="red_general_report"
+            string="General Report"
+            model="hr.applicant"
+            report_type="qweb-pdf"
+            name="hr_application_srcs.srcs_general_reports"
+            file="hr_application_srcs.srcs_general_reports"/>
+
+    <template id="srcs_general_reports">
+     
+         <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="oe_structure">
+                        <div class="article mt0 o_report_layout_standard" dir="ltr">
+                        	
+                        	<h3 style='text-align:center;font-style:italic;'><strong> إدارة الموارد البشرية والإدارية</strong></h3>
+                        	<h3 style='text-align:center;font-style:italic;'><span t-esc="o.frist_name"/><strong>تقرير شهر</strong></h3>
+                        	
+                        	<h5 class="text-right" style='font-style:initial;'><strong> المقدمة <br/> ..................</strong></h5><br/>
+                        	<p class="text-right" style='font-style:inherit;'><strong> :عدد الموظفين</strong></p>
+                        	<table class="table table-condensed table-bordered" style="border:2px solid black;">
+                        	<thead>
+	                        	<td class="text-right">
+	   	  	 	      	      	   <strong>الفــــــــــــــــــــــــــــــــــــــــــــــــروع</strong>
+
+	                            </td>
+	                            <br/>
+	                            <td class="text-right"><strong> الامــــــــــــــــــــــــــــــــانة العامة</strong></td>
+	                        </thead>
+	                        <tbody>
+	                        
+	                        	<td>
+	   	  	 	      	      	  <span t-field="o.applicaition_no"/>
+
+	                            </td>
+	                            <br/>
+	                            <td><span t-field="o.application_type"/></td>
+	                        </tbody>
+                        	</table>
+                        	<h5 class="text-right" style='font-style:inherit;'><strong> :الوظائف الشاغرة</strong></h5>
+                        	<table class="table table-condensed table-bordered" style="border:1px solid black;">
+                        	<thead >
+	                        	<td style="border:1px solid black;"><strong> المانح</strong></td>
+	                            <td style="border:1px solid black;"><strong>الإدارة/الفرع</strong></td>
+	                            <td style="border:1px solid black;"><strong>الوظيفة</strong></td>
+	                            <td style="border:1px solid black;"><strong>الرقم</strong></td>
+	                        </thead>
+	                        <tbody >
+	                        	<t t-set="i" t-value="1"/>
+                                   <tr class="text-left" style="border:1px solid black;" t-foreach="o.ed_course" t-as="line">
+                                            
+	                        
+	                        	<td ><span t-field="line.course_duration"/></td> 
+	                            <td ><span t-field="line.course_duration"/></td>
+	                            <td ><span t-field="line.course_location"/></td>
+	                            <td ><span t-esc="i"/></td>
+	                            <t t-set="i" t-value="i+1"/>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	                    <h5 class="text-right" style='font-style:inherit;'><strong> :التوظيف</strong></h5>
+	                    <h5 class="text-right" style='font-style:inherit;'><strong> :أ/ عدد الوظائف التي تم إعلانها</strong></h5>
+                        	<table class="table table-condensed table-bordered" style="border:1px solid black;">
+                        	<thead >
+	                        	
+	                            <td style="border:1px solid black;"><strong>ملاحظات</strong></td>
+	                            <td style="border:1px solid black;"><strong>الموقع /الامانة العامة / الفرع</strong></td>
+	                            <td style="border:1px solid black;"><strong>المشروع</strong></td>
+	                            <td style="border:1px solid black;"><strong>الوظيفة</strong></td>
+	                            <td style="border:1px solid black;"><strong>الرقم</strong></td>
+	                        </thead>
+	                        <tbody >
+	                        	<t t-set="i" t-value="1"/>
+                                 <tr class="text-left" style="border:1px solid black;" t-foreach="o.ed_course" t-as="line">
+                                   
+                                  <td ><span t-field="line.course_duration"/></td>           
+	                        
+	                        	<td ><span t-field="line.course_duration"/></td> 
+	                            <td ><span t-field="line.course_duration"/></td>
+	                            <td ><span t-field="line.course_location"/></td>
+	                            <td ><span t-esc="i"/></td>
+	                            <t t-set="i" t-value="i+1"/>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	                <p class="text-right" style="font-size:14px; color:#ff0000; font-weight:bold; font-style:inherit;'">
+	                	ملاحظات: معدل التعيينات الجديدة مقارنة بالشهر الماضي</p><br/>
+	                	<h5 class="text-right"><strong> :ب/ التعينات التي تمت خلال الشهر </strong></h5>
+                        	<table class="table table-condensed table-bordered" style="border:1px solid black;">
+                        	<thead >
+	                        	<td style="border:1px solid black;"><strong> تاريخ انتهاء الاعلان</strong></td>
+	                            <td style="border:1px solid black;"><strong>تاريخ الاعلان</strong></td>
+	                            <td style="border:1px solid black;"><strong>المانح</strong></td>
+	                            <td style="border:1px solid black;"><strong>الادارة</strong></td>
+	                            <td style="border:1px solid black;"><strong>اسم الوظيفة</strong></td>
+	                            <td style="border:1px solid black;"><strong>الرقم</strong></td>
+	                        </thead>
+	                        <tbody >
+	                        	<t t-set="i" t-value="1"/>
+                                 <tr class="text-left" style="border:1px solid black;" t-foreach="o.ed_course" t-as="line">
+                                  <td ><span t-field="line.course_duration"/></td> 
+                                  <td ><span t-field="line.course_duration"/></td>           
+	                        
+	                        	<td ><span t-field="line.course_duration"/></td> 
+	                            <td ><span t-field="line.course_duration"/></td>
+	                            <td ><span t-field="line.course_location"/></td>
+	                            <td ><span t-esc="i"/></td>
+	                            <t t-set="i" t-value="i+1"/>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	                <br/>
+	                    <h5 class="text-right" style='font-style:inherit;'><strong> :إنهاء الخدمة</strong></h5>
+                        	<table class="table table-condensed table-bordered" style="border:1px solid black;">
+                        	<thead >
+	                        	
+	                            <td style="border:1px solid black;"><strong>السبب</strong></td>
+	                            <td style="border:1px solid black;"><strong>الوظيفة</strong></td>
+	                            <td style="border:1px solid black;"><strong>الاسم</strong></td>
+	                            <td style="border:1px solid black;"><strong>الرقم</strong></td>
+	                        </thead>
+	                        <tbody >
+	                        	<t t-set="i" t-value="1"/>
+                                 <tr class="text-left" style="border:1px solid black;" t-foreach="o.ed_course" t-as="line">
+                                          
+	                        
+	                        	<td ><span t-field="line.course_duration"/></td> 
+	                            <td ><span t-field="line.course_duration"/></td>
+	                            <td ><span t-field="line.course_location"/></td>
+	                            <td ><span t-esc="i"/></td>
+	                            <t t-set="i" t-value="i+1"/>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	                <p class="text-right" style="font-size:14px; color:#ff0000; font-weight:bold; font-style:normal;">
+	                	ملاحظات: معدل الذين تركوا العمل والاسباب مقارنة بالشهر الماضي</p>
+                	<h5 class="text-right"><strong> :الجزاءات</strong></h5>
+                    	<table class="table table-condensed table-bordered" style="border:1px solid black;">
+                    	<thead >
+                        	
+                            <td style="border:1px solid black;"><strong>السبب</strong></td>
+                            <td style="border:1px solid black;"><strong>نوع الجزاء</strong></td>
+                            <td style="border:1px solid black;"><strong>الوظيفة</strong></td>
+                            <td style="border:1px solid black;"><strong>الاسم</strong></td>
+                            <td style="border:1px solid black;"><strong>الرقم</strong></td>
+                        </thead>
+                        <tbody >
+                        	<t t-set="i" t-value="1"/>
+                             <tr class="text-left" style="border:1px solid black;" t-foreach="o.ed_course" t-as="line">
+                                      
+                        
+                        	<td ><span t-field="line.course_duration"/></td>
+                        	<td ><span t-field="line.course_duration"/></td> 
+                            <td ><span t-field="line.course_duration"/></td>
+                            <td ><span t-field="line.course_location"/></td>
+                            <td ><span t-esc="i"/></td>
+                            <t t-set="i" t-value="i+1"/>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5 class="text-right"><strong> :التنقلات</strong></h5>
+                    	<table class="table table-condensed table-bordered" style="border:1px solid black;">
+                    	<thead >
+                        	
+                            <td style="border:1px solid black;"><strong>ملاحظات</strong></td>
+                            <td style="border:1px solid black;"><strong>الادارة</strong></td>
+                            <td style="border:1px solid black;"><strong>الوظيفة</strong></td>
+                            <td style="border:1px solid black;"><strong>الاسم</strong></td>
+                            <td style="border:1px solid black;"><strong>الرقم</strong></td>
+                        </thead>
+                        <tbody >
+                        	<t t-set="i" t-value="1"/>
+                             <tr class="text-left" style="border:1px solid black;" t-foreach="o.ed_course" t-as="line">
+                                      
+                        
+                        	<td ><span t-field="line.course_duration"/></td>
+                        	<td ><span t-field="line.course_duration"/></td> 
+                            <td ><span t-field="line.course_duration"/></td>
+                            <td ><span t-field="line.course_location"/></td>
+                            <td ><span t-esc="i"/></td>
+                            <t t-set="i" t-value="i+1"/>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5 class="text-right"><strong> :الترقيات</strong></h5>
+                    	<table class="table table-condensed table-bordered" style="border:1px solid black;">
+                    	<thead >
+                            <td style="border:1px solid black;"><strong>الادارة</strong></td>                           
+                            <td style="border:1px solid black;"><strong>الاسم</strong></td>
+                            <td style="border:1px solid black;"><strong>الرقم</strong></td>
+                        </thead>
+                        <tbody >
+                        	<t t-set="i" t-value="1"/>
+                             <tr class="text-left" style="border:1px solid black;" t-foreach="o.ed_course" t-as="line">
+                            <td ><span t-field="line.course_duration"/></td>
+                            <td ><span t-field="line.course_location"/></td>
+                            <td ><span t-esc="i"/></td>
+                            <t t-set="i" t-value="i+1"/>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5 class="text-right"><strong> :الارانيك المرضية</strong></h5>
+                    	<table class="table table-condensed table-bordered" style="border:1px solid black;">
+                    	<thead >
+                            <td style="border:1px solid black;"><strong>الادارة</strong></td>                           
+                            <td style="border:1px solid black;"><strong>الاسم</strong></td>
+                            <td style="border:1px solid black;"><strong>الرقم</strong></td>
+                        </thead>
+                        <tbody >
+                        	<t t-set="i" t-value="1"/>
+                             <tr class="text-left" style="border:1px solid black;" t-foreach="o.ed_course" t-as="line">
+                            <td ><span t-field="line.course_duration"/></td>
+                            <td ><span t-field="line.course_location"/></td>
+                            <td ><span t-esc="i"/></td>
+                            <t t-set="i" t-value="i+1"/>
+                        </tr>
+                    </tbody>
+                </table>
+
+                        	
+                        	
+
+
+
+
+
+
+
+                        	<t t-call="hr_application_srcs.custom_refrence_header" />
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

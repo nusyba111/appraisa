@@ -1,0 +1,91 @@
+<odoo>
+  <data>
+         <record id="view_salary_addendum_form" model="ir.ui.view">
+            <field name="name">hr.salary.addendum.form</field>
+            <field name="model">hr.salary.addendum</field>
+            <field name="arch" type="xml">
+                <form string="Salary Addendum">
+                    <header>
+                      <button name="action_submit" class="oe_highlight" type="object" string="Submit"
+                                states="draft"/>
+
+                        <button name="action_hr_approve" class="oe_highlight" type="object" string="Head Of HR Approve"
+                                states="employee"
+                                />
+                        <button name="action_finance_approve" class="oe_highlight" type="object" string="Finance Approve"
+                                states="hr_head_section"
+                                />        
+                        <field name="state" widget="statusbar" statusbar_visible='draft,employee,hr_head_section,approve,finance_approve'/>        
+                    </header>
+                    <sheet>
+                      <group>
+                        <group>
+                          <field name="date"/>
+                          <field name="employee_id"/>
+                          <field name="job_id"/>
+                          <field name="current_grade"/>
+                        </group>
+                        <group>
+                          <field name="branch_id"/>
+                          <field name="grade_id"/>
+                          <field name="level_id"/>
+                          <field name="current_level"/>
+                        </group>
+                      </group>
+                      <notebook>
+                        <page string="Salary Addendum Coverage" name="plan">
+                          <field name="plan_id">
+                              <tree editable="bottom">
+                                <field name="account_id"/>
+                                <field name="project" string="Project"/>
+                                <field name="activity" />
+                                <field name="location" />
+                                <field name="donor_id"/>
+                                <field name="percentage_of_covering"/>
+                              </tree>
+                            </field>
+
+                        </page>
+                      </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                  </form>
+            </field>
+          </record>
+
+          <record id="tree_hr_salary_addendum_view" model="ir.ui.view">
+            <field name="name">hr.salary.addendum.tree</field>
+            <field name="model">hr.salary.addendum</field>
+            <field name="arch" type="xml">
+                <tree string="Salary Addendum">
+                    <field name="date"/>
+                      <field name="employee_id"/>
+                      <field name="job_id"/>
+                      <field name="branch_id"/>
+                      <field name="grade_id"/>
+                      <field name="level_id"/>
+                </tree>
+            </field>
+          </record>
+
+          <record id="action_hr_salary_addendum_request" model="ir.actions.act_window">
+            <field name="name">Salary Addendum</field>
+            <field name="res_model">hr.salary.addendum</field>
+            <field name="view_mode">tree,form</field>
+          </record>
+
+
+
+    <menuitem
+      id="menu_hr_salary_addendum_process"
+      name="Salary Addendum"
+      parent="hr_employee_srcs.menu_hr_employee_process"
+      sequence="9"
+      action="action_hr_salary_addendum_request"
+      groups="hr.group_hr_manager,hr.group_hr_user,base.group_user"/>
+
+  </data>
+</odoo>

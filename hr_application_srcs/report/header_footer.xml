@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+<template id="custom_header">
+    <div class="header">
+          <div class="text-left">
+              <!-- <table class="table table-condensed table-white">
+                    <thead>
+                            
+                        <td style="width:100pt;"><img src="/hr_application_srcs/static/src/image/src.jpeg" style="height:100pt;" width="250"/></td>
+                           
+                    </thead>
+                     </table> -->
+                     <table class="table table-bordered" style="border:2px double black" t-att-colspan="8">
+                               <tr>  
+                                  <td t-att-colspan="2"><strong>عرض وظيفي</strong></td>
+                                  <td t-att-colspan="3" t-att-rowspan="2" ><img src="/hr_application_srcs/static/src/image/src.jpeg" style="height:100pt;" width="250"/></td>
+                                  <td t-att-colspan="2"><strong>إدارة الموارد البشرية</strong></td> 
+                                  <td class="text-center" t-att-rowspan="2"> <strong>رقم الوثيقة<br/>HRD-02-05</strong></td> 
+                                 </tr>
+                                 <!-- <tr>  
+                                  
+                                  <td t-att-colspan="2"><strong>Employement Application</strong></td>
+                                  <td t-att-colspan="2"><strong>Humen Resource Department</strong></td> 
+
+                                 </tr> -->
+                           </table>
+                         </div>
+                       </div>
+                     </template>
+<template id="custom_footer">
+    <div class="footer">
+          <div class="text-center" style="border-top: 1px solid black;">
+              <table class="table table-condensed table-bordered">
+                    <thead>
+                            
+                         <p><strong>Please Write in Capital Letter<span style="font-weight:bold"></span></strong></p>
+                         <p>COPIES White:Consignee/Green:Contract back to Sender / Blue:Transporter/Yellow:Sender<span style="font-weight:bold"></span></p>
+                         <p>اﻷبيض :للمرسل له/اﻷخضر:لتأكيد الإستلام/اﻷزرق:للمرحل/اﻷصفر:للراسل<span style="font-weight:bold"></span></p>
+                           
+                    </thead>
+                     </table>
+
+          </div>
+    </div>
+</template>
+<template id="custom_refrence_header">
+    <div class="header">
+          <div class="text-left">
+              <table class="table table-condensed table-white">
+                    <thead>
+                            
+                        <td style="width:100pt;"><img src="/hr_application_srcs/static/src/image/src.jpeg" style="height:100pt;" width="250"/></td>
+                           
+                    </thead>
+                     </table>
+                     </div>
+                   </div>
+</template>
+<template id="custom_interview_header">
+    <div class="header">
+          <div class="text-right">
+              <table class="table table-condensed table-white">
+                    <thead>
+                            
+                        <td style="width:100pt;"><img src="/hr_application_srcs/static/src/image/src.jpeg" style="height:100pt;" width="250"/></td>
+                           
+                    </thead>
+                     </table>
+                     </div>
+                   </div>
+                 </template>
+<template id="custom_invoice_header">
+    <div class="header">
+          <div >
+                     <table class="table table-condensed table-black" style="border-bottom: 2px solid black;" >
+                               <tr >  
+                                  
+                                  <td class="text-left" t-acolspan="2" dir="ltr"><img src="/hr_application_srcs/static/src/image/src.jpeg" style="height:30pt;" width="70"/></td>
+                                  <td colspan="4"></td>
+                                  <td colspan="4"></td>
+                                  <td colspan="4"></td>
+                                  <td class="text-right"  colspan="2" >Healthy and Nutritious Ingredients, That's our Business</td>  
+                                 </tr>
+                           </table>
+                           <!-- <div>
+                           <hr style="border-bottom: 2px solid black;" ></hr> </div> -->
+                           <table class="table table-condensed table-black" style="border-top: 5px solid White;">
+                               <td > 
+                                   <tr class="text-left">Nutringredients DMCC</tr><br/>
+                                   <tr >Unit No: E7, DMCC Business center</tr> <br/>
+                                   <tr >Level No.13, AG Tower, JLT</tr> <br/>
+                                   <tr >DUBAI</tr> <br/>
+                                   <tr >United Arab Emirates</tr> 
+                                </td>
+                           </table>
+                           <div>
+                           <hr style="border-bottom: 2px solid black;" width="50%"></hr> </div>
+          </div>
+    </div>
+</template>
+<template id="custom_invoice_footer">
+  <div class="footer">
+    <div class="text-left">
+                       <table class="table table-condensed table-black" style="border-top: 2px solid black;">
+                                 <tr >  
+                                    
+                                    <td class="text-left" t-acolspan="2" dir="ltr">Phone: +971561814636</td>
+                                    <td colspan="4"></td>
+                                    <td class="text-left" t-acolspan="2">Email: info@nutri-ingredients.com</td>
+                                    <td colspan="4"></td>
+                                    <td class="text-right"  colspan="2" >Website: http://www.nutri-ingredients.com</td>  
+                                   </tr>
+                             </table>
+                           </div>
+            <table>
+            <tr class="text-center"><p class="text-center">Page: 1 / 1</p> </tr>
+          </table>
+
+    </div>
+</template>
+
+
+</data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+    <record id="action_refuse" model="ir.ui.view">
+            <field name="name">Resone</field>
+            <field name="model">reason.wiz</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="description"/>
+
+                  </group>
+
+                  <footer>
+                        <button name="add_reason" string="Confirm" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+        
+        <record id="action_view_refuse" model="ir.actions.act_window">
+            <field name="name">Reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reason.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

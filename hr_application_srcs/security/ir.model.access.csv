@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_app_line,access.application.lines,model_app_lines,,1,1,1,1
+access_main_data_report,main.data.report,model_main_data_report,,1,1,1,1
+access_data_report_wiz_excel,data.report.wiz.excel,model_data_report_wiz_excel,,1,1,1,1
+access_position_position_report,position.position.report,model_position_position_report,,1,1,1,1
+access_position_position_job_report_excel,position.position.job.report.excel,model_position_position_job_report_excel,,1,1,1,1
+access_donor_donation_report,donor.donation.report,model_donor_donation_report,,1,1,1,1
+access_donor_donation_report_excel,donor.donation.report.excel,model_donor_donation_report_excel,,1,1,1,1
+access_donor_sdg_report,donor.sdg.report,model_donor_sdg_report,,1,1,1,1
+access_donor_sdg_report_excel,donor_sdg_report_excel,model_donor_sdg_report_excel,,1,1,1,1
+access_select_job_report,select.job.report,model_select_job_report,,1,1,1,1
+access_select_job_report_excel,select.job.report.excel,model_select_job_report_excel,,1,1,1,1
+

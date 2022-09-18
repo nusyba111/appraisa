@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--  START mission Type-tree -->
+        <record id="tree_mission_ticket_view" model="ir.ui.view">
+            <field name="name">hr.mission.ticket.type</field>
+            <field name="model">hr.mission.ticket</field>
+            <field name="arch" type="xml">
+                <tree string="Mission Ticket">
+                    <field name="travel_agency"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="ticket_amount"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <!--  START mission Type-form -->
+        <record id="form_mission_ticket_view" model="ir.ui.view">
+            <field name="name">hr.mission.ticket.form</field>
+            <field name="model">hr.mission.ticket</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_approve" class="oe_highlight" type="object" string="Approve"
+                                states="draft"
+                                />   
+                        <field name="state" widget="statusbar" statusbar_visible='draft,approve'/> 
+                    </header>
+                    <sheet>
+                        <group string="Mission Ticket">
+                            <group>
+                                <field name="travel_agency"/>
+                                <field name="date_from"/>
+                                <field name="doner"/>
+                                <field name="project"/>
+                            </group>
+                            <group>
+                                <field name="ticket_amount"/>
+                                <field name="date_to"/>
+                                <field name="activity"/>
+                                <field name="location"/>
+                            </group>
+                        </group>          
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+       <!--  START mission enrich-action -->
+        <record model="ir.actions.act_window" id="mission_ticket_action">
+            <field name="name">Mission Ticket</field>
+            <field name="res_model">hr.mission.ticket</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!--    Mission Type MENU ITEM    -->
+
+        <menuitem id="mission_ticket_menu"
+                  name="Mission Ticket"
+                  parent="mission_menu_root"
+                  action="mission_ticket_action"
+                  groups="hr_mission_srcs.group_hr_mission_manager"
+                  sequence="3"/>
+
+    </data>
+</odoo>

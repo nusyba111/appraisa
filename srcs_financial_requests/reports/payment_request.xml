@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_request_payment_request" model="ir.actions.report">
+        <field name="name">Payment Request</field>
+        <field name="model">payment.request</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">srcs_financial_requests.request_payment_template</field>
+        <field name="report_file">srcs_financial_requests.request_payment_template</field>
+<<<<<<< HEAD
+        <!-- <field name="print_report_name">'%s' % object.name</field> -->
+        <field name="binding_model_id" ref="model_payment_request"/>
+        <field name="binding_type">report</field></record>
+
+
+=======
+        <field name="binding_model_id" ref="model_payment_request"/>
+        <field name="binding_type">report</field></record>
+
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+        <template id="request_payment_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <table class="table table-bordered" style="border:2px solid black;">
+<<<<<<< HEAD
+                                <thead colspan="2">
+
+                                </thead>
+=======
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                            <tbody>
+                                <t t-foreach="o" t-as="doc">
+                                    <tr>
+                                        <td style="border:2px solid black;"> Pay to: &#160;
+                                        <span t-esc="doc.pay_to.name"/></td>
+                                        <td style="border:2px solid black;"> Amount / المبلغ:
+                                         &#160; 
+                                        <span t-esc="doc.total_amount"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:2px solid black;"> Address / العنوان:
+                                         &#160;
+                                        </td>
+                                        <td style="border:2px solid black;"></td>
+<<<<<<< HEAD
+        <!--                                 <span t-esc=""/>-->
+=======
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                    </tr>
+                                    <tr>
+                                        <td style="border:2px solid black;"> Bank / المصرف:
+                                        &#160;
+                                        <span t-esc="doc.journal_id.bank_account_id.bank_id.name"/></td>
+                                        <td style="border:2px solid black;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:2px solid black;"> Account No / حساب:
+                                        &#160;
+                                         
+                                        <span t-esc="doc.journal_id.bank_account_id.acc_number"/></td>
+                                        <td style="border:2px solid black;"></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+<<<<<<< HEAD
+                        <h5 style="float:left;">Date required / التاريخ:
+                        <span t-esc="o.date"/></h5>
+=======
+                        <h5 style="float:left;">Date required / التاريخ:</h5><span t-esc="o.date"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                        <h5 style="float:right;">Method of Payment / طريقة الدفع:<span t-esc="o.payment_method"/></h5>
+
+                        <table class="table table-bordered" style="border:2px solid black;">
+                            <thead colspan="4">
+<<<<<<< HEAD
+        <!--                        <strong>-->
+                                    <th class="text-left;font-size:45px"  style="width: 50%;">Account No/BL &lt;br/&gt;:رقم الحساب /بند الميزانية</th>
+                                    <th class="text-left;font-size:45px" style="width: 50%;">project/Cost Center Code  &lt;br/&gt; :المشروع</th>
+                                    <th class="text-left;font-size:45px" style="width: 50%;">Activiy Code &lt;br/&gt;: النشاط</th>
+                                    <th class="text-left;font-size:45px" style="width: 50%;">Donor Code &lt;br/&gt;: المانح</th>
+                                    <th class="text-left;font-size:45px"  style="width: 50%;">Currency &lt;br/&gt;: العملة</th>
+                                    <th class="text-left;font-size:45px" style="width: 50%;">Amount &lt;br/&gt;: المبلغ</th>
+        <!--                        </strong>-->
+=======
+                                <th class="text-left;font-size:45px"  style="width: 50%;border:2px solid black;">Account No/BL :&lt;br/&gt;رقم الحساب /بند الميزانية</th>
+                                <th class="text-left;font-size:45px" style="width: 50%;border:2px solid black;">project/Cost Center Code:  &lt;br/&gt; المشروع</th>
+                                <th class="text-left;font-size:45px" style="width: 50%;border:2px solid black;">Activiy Code:&lt;br/&gt; النشاط</th>
+                                <th class="text-left;font-size:45px" style="width: 50%;border:2px solid black;">Donor Code: &lt;br/&gt; المانح</th>
+                                <th class="text-left;font-size:45px"  style="width: 50%;border:2px solid black;">Currency: &lt;br/&gt; العملة</th>
+                                <th class="text-left;font-size:45px" style="width: 50%;border:2px solid black;">Amount: &lt;br/&gt; المبلغ</th>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.budget_line_ids" t-as="line">
+                                <tr>
+                                    <td style="border:2px solid black;">
+                                    <span t-esc="line.account_id.name"/></td>
+                                    <td style="border:2px solid black;">
+<<<<<<< HEAD
+                                    <span t-esc="line.project_id.name"/></td>
+                                    <td style="border:2px solid black;">
+                                    <span t-esc="line.analytic_activity_id.name"/></td>
+                                    <td style="border:2px solid black;">
+                                    <span t-esc="line.donor_id.name"/></td>
+=======
+                                    <span t-esc="line.project_id.code"/></td>
+                                    <td style="border:2px solid black;">
+                                    <span t-esc="line.analytic_activity_id.code"/></td>
+                                    <td style="border:2px solid black;">
+                                    <span t-esc="line.donor_id.donor_code"/></td>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                    <td style="border:2px solid black;">
+                                    <span t-esc="line.currency_id.name"/></td>
+                                    <td style="border:2px solid black;">
+                                    <span t-esc="line.request_amount"/></td>
+                                </tr></t>
+                            </tbody>
+                        </table>
+                        <br/>
+<<<<<<< HEAD
+                       
+                        
+                        
+                        <table class="table table-bordered" style="border:2px solid black;">
+                            <thead colspan="5">
+<!--                        <strong>-->
+                            <th>     </th>
+                            <th>Title &lt;br/&gt;
+                            الوظيفة</th>
+                            <th>Name &lt;br/&gt;
+                            اﻷسم</th>
+                            <th>Signature &lt;br/&gt;
+                            التوفيع
+                            </th>
+                            <th>Date &lt;br/&gt;
+                            التاريخ</th>
+<!--                        </strong>-->
+                    </thead>
+                    <tbody>
+<!--                            <t t-foreach="o.budget_line_ids" t-as="line">-->
+                            <tr>
+                                <td>
+                                Requested by الطالب</td>
+                                 <td><span t-esc="o.requested_by.employee_id.job_id.name"/></td>
+                                 <td><span t-esc="o.requested_by.name"/></td>
+                                 <td> </td>
+                                 <td><span t-esc="o.requested_by_date"/></td>
+                            </tr>
+                        <tr>
+                            <td>
+                                Authorisation الموافقة  </td>
+                            <td><span t-esc="o.authorisation_by.employee_id.job_id.name"/></td>
+                                 <td><span t-esc="o.authorisation_by.name"/></td>
+                                 <td> </td>
+                                 <td><span t-esc="o.authorisation_by_date"/></td>
+                             </tr>
+                        <tr>
+                            <td>
+                                Reviewed by روجع بواسطة</td>
+                               <td><span t-esc="o.reviwed_by_user.employee_id.job_id.name"/></td>
+                                 <td><span t-esc="o.reviwed_by_user.name"/></td>
+                                 <td> </td>
+                                 <td><span t-esc="o.reviwed_by_date"/></td>
+                             </tr>
+                        <tr>
+                            <td>
+                                Final Approval التصديق النهائي</td>
+                                <td><span t-esc="o.final_approval.employee_id.job_id.name"/></td>
+                                 <td><span t-esc="o.final_approval.name"/></td>
+                                 <td> </td>
+                                 <td><span t-esc="o.final_approval_date"/></td>
+                             </tr>
+<!--                </t>-->
+            </tbody>
+                         </table>
+=======
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <table class="table table-bordered" style="border:2px solid black;">
+                            <thead colspan="5">
+                                <th>     </th>
+                                <th>Title &lt;br/&gt;
+                                الوظيفة</th>
+                                <th>Name &lt;br/&gt;
+                                اﻷسم</th>
+                                <th>Signature &lt;br/&gt;
+                                التوفيع
+                                </th>
+                                <th>Date &lt;br/&gt;
+                                التاريخ</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    Requested by الطالب</td>
+                                    <td><span t-esc="o.requested_by.employee_id.job_id.name"/></td>
+                                    <td><span t-esc="o.requested_by.name"/></td>
+                                    <td> </td>
+                                    <td><span t-esc="o.requested_by_date"/></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Authorisation الموافقة  </td>
+                                    <td><span t-esc="o.authorisation_by.employee_id.job_id.name"/></td>
+                                        <td><span t-esc="o.authorisation_by.name"/></td>
+                                        <td> </td>
+                                        <td><span t-esc="o.authorisation_by_date"/></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Reviewed by روجع بواسطة</td>
+                                    <td><span t-esc="o.reviwed_by_user.employee_id.job_id.name"/></td>
+                                        <td><span t-esc="o.reviwed_by_user.name"/></td>
+                                        <td> </td>
+                                        <td><span t-esc="o.reviwed_by_date"/></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Final Approval التصديق النهائي</td>
+                                        <td><span t-esc="o.final_approval.employee_id.job_id.name"/></td>
+                                        <td><span t-esc="o.final_approval.name"/></td>
+                                        <td> </td>
+                                        <td><span t-esc="o.final_approval_date"/></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                    </div>
+                </t>
+            </t>
+        </t>
+        </template>
+</odoo>

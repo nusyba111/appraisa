@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_customer_srcs" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='function']" position="before">
+                <field name="donor_code" />
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="account.res_partner_action_customer">
+        <field name='name'>Donors</field>
+    </record>
+</odoo>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="cash_request_view_form" model="ir.ui.view">
+        <field name="name">cash.request.view.form</field>
+        <field name="model">cash.request</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Reset To Draft" name="reset_to_draft" type="object" attr="{'invisible':('state','=','payment')}"/>
+                    <button string="Confirm Branch Finance" name="confrim_finance" type="object" class="oe_highlight" states="draft" groups="accounting_srcs.group_finance_director"/>
+                    <button string="Confirm Branch Director" name="confirm_branch_dir" type="object" class="oe_highlight" states="branch_finance" groups="accounting_srcs.group_branch_director"/>
+                    <button string="Approve Finance Director" name="approve_secratry" type="object" class="oe_highlight" states="branch_director" groups="accounting_srcs.group_secretary_general"/>
+                    <button string="Confirm Finance Officer" name="confirm_finance_department" type="object" class="oe_highlight" states="secratry_general" groups="accounting_srcs.group_finance_department"/>
+                    <button string="Approve Program Department" name="approve_program_department" type="object" class="oe_highlight" attrs="{'invisible':['|',('state','!=','finance_department'),('is_branch_loans','=',True)]}" groups="accounting_srcs.group_program_department"/>
+                    <button string="Confirm Internal Auditor" name="cash_request_internal_auditor" type="object" class="oe_highlight" states="program_department" groups="accounting_srcs.group_internal_auditor"/>
+                    <button string="Confirm Internal Auditor" name="branch_loan_internal_auditor" type="object" class="oe_highlight" attrs="{'invisible':['|',('state','!=','finance_department'),('is_branch_loans','=',False)]}" groups="accounting_srcs.group_internal_auditor"/>
+                    <button string="Submit Payment" name="submit_payment" type="object" class="oe_highlight" states="secratry_general_two" groups="accounting_srcs.group_payment"/>
+                    <button string="Second Secretary Approval" name="second_approve_secretary" type="object" class="oe_highlight" states="internal_auditor" groups="accounting_srcs.group_secretary_general"/>
+                    <field name="state" widget="statusbar" statusbar_visible="darft,payment"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" attrs="{'invisible':[('is_branch_loans','=',True)]}"/>
+                        <label for="sequence" attrs="{'invisible':[('is_branch_loans','!=',True)]}"/>
+                        <h1>
+                            <field name="name" attrs="{'invisible':[('is_branch_loans','=',True)]}"/>
+                            <field name="sequence" attrs="{'invisible':[('is_branch_loans','!=',True)]}"/>
+                        </h1>
+                    </div>
+                    <group>
+                       <group>
+                            <field name="user_id" />
+                            <field name="company_currency_id" invisible='1'/>
+                            <field name="user_lang_id" invisible='1'/>
+                            <field name="budget_id" attrs="{'invisible':[('is_branch_loans','!=',True)]}"/>
+                            <field name="project_id" attrs="{'invisible':[('is_branch_loans','=',True)]}"/>
+                            <field name="budget_line_id" invisible="1"/>
+                       </group> 
+                       <group>
+                            <field name="is_branch_loans" invisible="1"/>
+                            <field name="date" />
+                            <field name="donor_id" domain="[('customer_rank','=', 1)]" force_save="1"/>
+<<<<<<< HEAD
+                            <field name="budget_currency" invisible='1'/>
+                            <field name="residual_amount" force_save="1"/>
+=======
+                            <field name="residual_amount" force_save="1"  invisible="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                       </group>  
+                    </group>
+                    <group>
+                        <group>
+                            <field name="budget_currency" />
+                            <field name="currency_id" invisible='1'/>
+                            <field name="requested_amount" />
+                            <field name="amount_in_words" />
+                        </group>
+                        <group>
+                            <field name="requested_amount_sdg" />
+                            <field name="amount_in_words_sdg" />
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Budget Lines">
+                            <field name="cash_request_line_ids">
+                                <tree editable="bottom">
+                                    <field name="cash_request_line_currency" invisible="1"/>
+                                    <field name="project_id" optional="hide"/>
+                                    <field name="budget_line" />
+                                    <field name="budget_line_limit" />
+                                    <field name="amount" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Accounting">
+                            <!-- <group> -->
+                                <group col="4">
+                                    <field name="source_bank" domain="[('type', 'in', ('bank', 'cash'))]" attrs="{'invisible':[('state','!=','payment')],'required':[('state','=','payment')]}"/>
+                                    <field name="dest_bank" domain="[('type', 'in', ('bank', 'cash'))]"/>
+                                    <field name="internal_transfer_id" />
+                                    <field name="is_cleared" attrs="{'invisible':[('is_branch_loans','=',False)]}"/>
+                                    <field name="is_partially_clearance" attrs="{'invisible':[('is_branch_loans','=',False)]}"/>
+                                    <field name="un_cleared_amount" attrs="{'invisible':[('is_branch_loans','=',False)]}"/>
+                                </group>
+                            <!-- </group> -->
+                        </page>
+                        <page string="Description">
+                            <field name="description" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="Cash_Request_view_tree" model="ir.ui.view">
+        <field name="name">Cash.Request.view.tree</field>
+        <field name="model">cash.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="is_branch_loans" invisible="1"/>
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="requested_amount" />
+                <field name="budget_currency" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="branch_loan_view_tree" model="ir.ui.view">
+        <field name="name">Branch.Loan.view.tree</field>
+        <field name="model">cash.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="is_branch_loans" invisible="1"/>
+                <field name="sequence"/>
+                <field name="budget_id"/>
+                <field name="requested_amount" />
+                <field name="budget_currency" />
+            </tree>
+        </field>
+    </record>
+    <record id="Cash_Request_action" model="ir.actions.act_window">
+        <field name="name">Cash Request</field>
+        <field name="res_model">cash.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="Cash_Request_view_tree"/>
+        <field name="domain">[('is_branch_loans','=',False)]</field>
+        <!-- <field name="context">{'default_is_branch_loans':False}</field> -->
+    </record>
+    <record id="branch_loans_action" model="ir.actions.act_window">
+        <field name="name">Branch Loans</field>
+        <field name="res_model">cash.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="branch_loan_view_tree"/>
+        <field name="domain">[('is_branch_loans','=',True)]</field>
+        <field name="context">{'default_is_branch_loans':True}</field>
+    </record>
+
+    <menuitem
+        id="finacial_request_menu"
+        name="Finance Requests"
+        web_icon="srcs_financial_requests,static/description/images2.png"/>
+
+    <menuitem
+        id="cash_request_menu"
+        name="Cash Request"
+        parent="finacial_request_menu"
+        action="Cash_Request_action"
+        sequence="1"/>
+
+     <menuitem
+        id="branch_loans_menu"
+        name="Branch Loans"
+        parent="finacial_request_menu"
+        action="branch_loans_action"
+        sequence="2"/>
+    
+</odoo>

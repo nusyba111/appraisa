@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- cash request filter -->
+    <record id="cash_request_filter" model="ir.ui.view">
+        <field name="name">account.payment.filter</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search[1]" position="inside">
+                <field name="ref" string="Cash Request"/>
+                <filter string="Customer Payments" name="ref"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

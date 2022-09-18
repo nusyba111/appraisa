@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+warehouse,warehouse.report,model_warehouse_report,stock.group_stock_manager,1,1,1,1
+warehouse_excel,warehouse.report.excel,model_warehouse_report_excel,stock.group_stock_manager,1,1,1,1
+received,received.report,model_received_report,stock.group_stock_manager,1,1,1,1
+received_excel,received.report.excel,model_received_report_excel,stock.group_stock_manager,1,1,1,1
+health,health.report,model_health_report,stock.group_stock_manager,1,1,1,1
+health_excel,health.report.excel,model_health_report_excel,stock.group_stock_manager,1,1,1,1
+pin,pin.card,model_pin_card,stock.group_stock_manager,1,1,1,1

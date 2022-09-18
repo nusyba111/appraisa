@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+         <report id="red_refrence_report"
+            string="Reference Request"
+            model="hr.applicant"
+            report_type="qweb-pdf"
+            name="hr_application_srcs.srcs_refrence_reports"
+            file="hr_application_srcs.srcs_refrence_reports"/>
+
+    <template id="srcs_refrence_reports">
+     
+         <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="oe_structure">
+                        <div class="article mt0 o_report_layout_standard" dir="ltr"> 
+                        <u><h5 style='text-align:center;'><strong>Reference Request</strong></h5></u><br/>
+                        <p><strong>Dear:<span t-esc="o.frist_name"/></strong></p><br/>
+                        <p>Your name was given to us by<strong> <span t-esc="o.frist_name"/>.</strong>as reference,we have offered to him the position of <strong> <span t-esc="o.frist_name"/> </strong>with our society SRCS.<br/>We would very much apperciate your opinion of his suitability for this position,please give us your frank and honest opinion about him, we can assure you that any information you give will be treated confidentially. </p><br/>
+                                                            
+                                    <table class="table table-condensed table-bordered" style="border:2px solid black;" t-att-colspan="2">
+                                      
+                                            <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Name: </td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Organization/Company:</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Position:</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+                                           </tr>
+                                           <tr style="border:2px solid black;" >
+                                            <td class="text-left" style="background-color:#154360 "/>
+                                            <td class="text-left" style="background-color:#154360"/>
+                                           </tr >
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">What your Relationship with the candidate and how long ?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">How did you rate his work with you?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+
+                                            <tr style="border:2px solid black;">
+                                               <td class="text-leftleft" style="border:2px solid black;width: 20%;">Why the candidate leave the work?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">In your experience, does the candidate</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">work better alone or with a team?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">What are their strong points?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">What are their weak points?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Were there any behaviors that affected job performance?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">How would you describe the candidate’s overall performance? Please justify:</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Please give details of any formal disciplinary action during employment?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Would you re-hire this candidate if given the opportunity?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Please feel free to provide any further information and general comment?</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+
+                                           </tr>
+                                    </table>
+                                    <p>Please return your completed reference, signed and scanned, to:<strong> <br/><span t-esc="o.frist_name"/></strong><br/>If you are unable to sign and scan please email the reference. Then post hard copy of signed reference or contact us to arrange collection.</p>
+                                    <table class="table table-condensed table-bordered" style="border:2px solid black;" t-att-colspan="2">
+                                      
+                                            <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Reference Name:</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Reference Name:</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+                                           </tr>
+                                       </table>
+                                 
+                                <t t-call="hr_application_srcs.custom_refrence_header" />
+                                <!-- <t t-call="srcs_inventory.custom_footer" /> -->
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+</odoo>    
+       
+    

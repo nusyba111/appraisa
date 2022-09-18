@@ -1,0 +1,241 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <!-- Form view of Clearance Approval -->
+        <record id="view_finance_approval_form" model="ir.ui.view">
+            <field name="name">clearance.approval.form</field>
+            <field name="model">custody.clearance</field>
+            <field name="arch" type="xml">
+                <form string="Custody Clearance Information">
+                    <header>
+                        <button name="to_approve" type="object"
+                                string="Send To Accounting" states="draft" class="oe_highlight" groups="base.group_user"/>
+                        <button name="fm_approval" type="object"
+                                string="Finance Approval" states="to_approve" class="oe_highlight"
+                                groups="is_accounting_approval_12.account_access_group"/>
+
+                        <button name="reject" type="object"
+                                string="Reject" states="to_approve" class="oe_highlight"
+                                groups="is_accounting_approval_12.account_access_group"/>
+
+                        <button name="reject" type="object"
+                                string="Reject" states="au_app" class="oe_highlight"
+                                groups="is_accounting_approval_12.auditor_access_group"/>
+
+                        <button name="validate" type="object"
+                                string="Validate" states="fm_app" class="oe_highlight"
+                                groups="is_accounting_approval_12.auditor_access_group"/>
+
+                        <button name="set_to_draft" type="object"
+                                string="Set to Draft" states="to_approve" class="oe_highlight"
+                                groups=""/>
+
+                        <button name="set_to_draft" type="object"
+                                string="Set to Draft" states="fm_app" class="oe_highlight"
+                                groups="is_accounting_approval_12.auditor_access_group"/>
+
+                        <button name="cancel_button" type="object"
+                                string="Cancel" states="validate" class="oe_highlight"
+                                groups="is_accounting_approval_12.auditor_access_group"/>
+
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet string="Custody Clearance Management">
+                        <group col="4">
+                            <field name="cc_date" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                            <field name="clearance_no" readonly="1"/>
+                            <field name="approval_id" attrs="{'readonly':[('state','not in',['draft'])]}" options="{'no_create':True}"/>
+                            <field name="clearance_currency" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                            <field name="department_id" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+
+                        </group>
+                        <group  col="4">
+                            <field name="requester" default_focus="1"
+                                   attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                            <field name="clearance_amount_new" attrs="{'readonly':[('state','not in',['draft'])]}" readonly="1"/>
+                            <field name="clearance_amount_words" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                            <field name="clearance_amount" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                            <field name="reason" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+
+                        </group>
+
+                        <group  col="4">
+                            <!--<field name="finance_approval_id" attrs="{'readonly':[('state','not in',['validate'])]}"/>-->
+                            <field name="mn_remarks" attrs="{'readonly':[('state','in',['validate'])]}"
+                                   groups="is_accounting_approval_12.manager_access_group"/>
+                            <field name="auditor_remarks" attrs="{'readonly':[('state','in',['validate'])]}"
+                                   groups="is_accounting_approval_12.auditor_access_group"/>
+                            <field name="fm_remarks" attrs="{'readonly':[('state','in',['validate'])]}"
+                                   groups="account.group_account_manager"/>
+                            <field name="difference_amount" />
+                        </group>
+
+                        <group string="Custody Clearance Details" colspan="4" col="4">
+                            <field name="custody_clearance_line_ids"
+                                   attrs="{'readonly':[('state','not in',['draft','fm_app','au_app'])]}"
+                                   nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="notes"/>
+                                    <field name="exp_account"/>
+                                    <field name="analytic_account"/>
+                                    <field name="attachment"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Accounting Details" colspan="4" col="4">
+                            <field name="clearance_journal_id"
+                                   attrs="{'required':[('state','in',['au_app'])], 'readonly':[('state','in',['validate','draft','to_approve','gm_app'])]}"/>
+                            <field name="journal_id"
+                                   attrs="{'required':[('state','in',['au_app'])], 'readonly':[('state','in',['validate','draft','to_approve','gm_app'])]}"/>
+                            <field name="cr_account"
+                                   attrs="{'required':[('state','in',['au_app'])], 'readonly':[('state','in',['validate','draft','to_approve','gm_app'])]}"/>
+                            <field name="move_id" context="{'form_view_ref':'account.view_move_form'}" attrs= "{'readonly':[('state','in',['gm_app','fm_app','to_approve','validate','draft','au_app'])]}"/>
+                            <field name="move2_id" context="{'form_view_ref':'account.view_move_form'}" attrs= "{'readonly':[('state','in',['gm_app','fm_app','to_approve','validate','draft','au_app'])]}"/>
+                        </group>
+                        <notebook>
+                            <page string="Remarks">
+                                <group string="Remarks" colspan="4" col="4">
+                                    <field name="view_remarks"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Tree view of Custody Clearance -->
+        <record id="view_custody_clearance_tree" model="ir.ui.view">
+            <field name="name">view.custody.clearance.tree</field>
+            <field name="model">custody.clearance</field>
+            <field name="arch" type="xml">
+                <tree string="Custody Clearance Approvals">
+                    <field name="clearance_no"/>
+                    <field name="name"/>
+                    <field name="manager_id"/>
+                    <field name="cc_date"/>
+                    <field name="clearance_amount" sum="Total"/>
+                    <field name="clearance_currency" sum="Total"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+<!--        &lt;!&ndash; Search view of Custody Clearance Approval &ndash;&gt;-->
+<!--        <record id="view_custody_clearance_search" model="ir.ui.view">-->
+<!--            <field name="name">view.custody.clearance.search</field>-->
+<!--            <field name="model">custody.clearance</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Custody Clearance Approval">-->
+<!--                    <field name="clearance_no"/>-->
+<!--                    <field name="cc_date"/>-->
+<!--                    <field name="requester"/>-->
+<!--                    <field name="manager_id"/>-->
+<!--                    <field name="clearance_amount"/>-->
+<!--                    <field name="state"/>-->
+<!--                    <group string="Filter By">-->
+<!--                        <filter name="by_today" string="Today"-->
+<!--                                domain="[('cc_date','=',time.strftime('%%Y-%%m-%%d'))]"/>-->
+<!--                    </group>-->
+<!--                    <group expand="0" string="Group By">-->
+<!--                        &lt;!&ndash;<filter string="Status" domain="[]" context="{'group_by':'state'}"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<filter string="Custody Clearance Approval Date" domain="[]" context="{'group_by':'cc_date'}"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<filter string="User" domain="[]" context="{'group_by':'user_id'}"/>&ndash;&gt;-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <!-- Action of Custody Clearance Approval System -->
+        <record id="action_cc" model="ir.actions.act_window">
+            <field name="name">Custody Clearance Approval</field>
+            <field name="res_model">custody.clearance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Menu of Custody Clearance Approval System -->
+        <menuitem id="menu_cc_child"
+                  name="Custody Clearance Approval" sequence="1" web_icon="is_custody_clearance_15,static/description/icon.png"/>
+
+        <menuitem id="menu_cc_child_1"
+                  name="Custody Clearance Approval" parent="menu_cc_child"/>
+        <menuitem id="menu_cc_child_child" parent="menu_cc_child_1"
+                  name="Custody Clearance Approval" action="action_cc"/>
+
+        <record id="menu_cc_child_child" model="ir.ui.menu">
+            <!-- Use the special many2many value syntax to add a child record,
+                 and the `ref()` method to resolve the group XML ID -->
+            <field name="groups_id"
+                   eval="[(4, ref('base.group_user')),]"/>
+        </record>
+
+
+
+               <!-- Form view of custody configuration Approval -->
+        <record id="view_finance_config_form" model="ir.ui.view">
+            <field name="name">custody.config.form</field>
+            <field name="model">custody.config</field>
+            <field name="arch" type="xml">
+                <form string="Custody Clearace Information">
+                    <sheet string="Custody Configuration">
+                        <group col="4">
+                            <field name="name" />
+                            <field name="approve_amount" />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view of Custody Clearance -->
+        <record id="view_custody_config_tree" model="ir.ui.view">
+            <field name="name">view.custody.config.tree</field>
+            <field name="model">custody.config</field>
+            <field name="arch" type="xml">
+                <tree string="Custody Configuration" default_order="cc_date,id">
+                   <field name="name" />
+                            <field name="approve_amount" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action of Custody Clearance Approval System -->
+        <record id="action_cc_config" model="ir.actions.act_window">
+            <field name="name">Custody Clearance Configuration</field>
+            <field name="res_model">custody.config</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Menu of Custody Clearance Approval System -->
+        <menuitem id="menu_cc_child"
+                  name="Custody Clearance Approval" sequence="1" web_icon="is_custody_clearance_15,static/description/icon.png"/>
+
+        <menuitem id="menu_cc_child_1_setting"
+                  name="Configuration" parent="menu_cc_child"/>
+        <menuitem id="menu_cc_child_child_setting" parent="menu_cc_child_1"
+                  name="Configuration" action="action_cc_config"/>
+
+        <record id="menu_cc_child_child_setting" model="ir.ui.menu">
+            <!-- Use the special many2many value syntax to add a child record,
+                 and the `ref()` method to resolve the group XML ID -->
+            <field name="groups_id"
+                   eval="[(4, ref('base.group_user')),]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.actions.act_window" id="reconsile_journal_entry_action">
+            <field name="name">Reconsile Journal Entry</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form</field>
+
+            <field name="domain">[('reconsile_id','=',active_id)]</field>
+        </record>
+        <record id="view_bank_acc_rec_statement_tree" model="ir.ui.view">
+            <field name="name">bank.rec.statement.tree</field>
+            <field name="model">bank.acc.rec.statement</field>
+            <field name="arch" type="xml">
+                <tree string="Bank Account Reconciliation Statements">
+                    <field name="name"/>
+                    <field name="ending_date"/>
+                    <field name="account_id"/>
+                    <field name="prepared_by_user_id"/>
+                    <field name="validated_by_user_id" />
+                    <field name="reviewed_by_user_id" />
+                    <field name="approved_date_by_user_id" />
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_bank_acc_rec_statement_form" model="ir.ui.view">
+            <field name="name">bank.acc.rec.statement.form</field>
+            <field name="model">bank.acc.rec.statement</field>
+            <field name="arch" type="xml">
+                <form string="Bank Account Reconciliation Statement">
+                    <header>
+                        <button string="Prepare" name="action_prepared" type="object" class="oe_highlight" states="draft"/>
+                        <button string="Validate" name="action_validate" type="object" class="oe_highlight" states="finance_officer"/>
+                        <button name="action_review" type="object" states="validate"
+                                string="Submit for Review"
+                                class="oe_highlight"/>
+                        <button name="action_process" type="object"
+                                states="to_be_reviewed"
+                                string="Approve"
+                                class="oe_highlight"/>
+<<<<<<< HEAD
+                        <button name="action_cancel_draft" states="cancel,done"
+=======
+                        <button name="action_cancel_draft" states="finance_officer,validate,cancel,done"
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                string="Set to Draft" type="object"/>
+                        <button name="action_cancel" type="object"
+                                states="draft,to_be_reviewed"
+                                string="Cancel"/>
+<<<<<<< HEAD
+                        <button name='refresh_record' string='Refresh'
+                                confirm="Current edits in statement will be lost. Do you want to refresh?"
+                                states="draft" type='object'/>
+=======
+                        <button name='refresh_record' string='Refresh Credit and Debit Lines'
+                                confirm="Current edits in statement will be lost. Do you want to refresh?"
+                                states="finance_officer" type='object'/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                        <button name="create_entry" type='object' string='Create Journal Entry' />
+
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(reconsile_journal_entry_action)d" type='action' string='journal entry' icon='fa-clipboard'/>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Enter Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <!-- <field name="job_id" /> -->
+                                <!-- <field name="user_id" invisible="1"/> -->
+                                <field name='journal_id' domain="[('type','=','bank')]"/>
+                                <field name="account_id"
+                                       placeholder="Select the account"/>
+                                <field name="ending_date"
+                                       placeholder="Enter the ending date"/>
+                                <field name="ending_balance"
+                                       placeholder="Enter the ending balance"/>
+<<<<<<< HEAD
+=======
+                                
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                            </group>
+                            <group>
+                                <field name="last_ending_date"
+                                       placeholder="Date of the last statement"
+<<<<<<< HEAD
+                                />
+                                <field name="starting_balance"
+                                       placeholder="Enter the starting balance"/>
+                                <field name="suppress_ending_date_filter"/>
+=======
+                                       invisible="1"
+                                />
+                                <field name="starting_balance"
+                                       placeholder="Enter the starting balance"/>
+                                <field name="account_ending_balance" />
+                                <field name="suppress_ending_date_filter" invisible="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                <field name="company_id"
+                                       groups="base.group_multi_company"
+                                       placeholder="Select the company"/>
+                            </group>
+                        </group>
+                        <notebook colspan="5">
+                            <page string="Journal Items">
+                                <!-- <label for='account_label'
+                                       string='Deposits, Credits, and Interest'/> -->
+                                <field colspan="4"
+                                       name="debit_move_line_ids"
+                                       widget="one2many_list"
+                                       height="300" >
+                                    <form string="Deposits, Credits, and Interest">
+                                        <group col="4">
+                                            <field name="cleared_bank_account" force_save="1"/>
+<<<<<<< HEAD
+                                            <field name="in_system" force_save="1"/>
+=======
+                                            <field name="not_in_system" force_save="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                            <field name="date" force_save="1"
+                                            />
+                                            <field name="name" force_save="1"
+                                            />
+                                            <field name="ref" force_save="1"
+                                            />
+                                            <field name="partner_id" force_save="1"
+                                            />
+                                            <field name="amount" force_save="1" sum="Total"
+                                            />
+                                            <field name="amountcur"
+                                                   force_save="1"  />
+                                            <field name="currency_id"
+                                                   force_save="1"  />
+                                            <field name="research_required"
+<<<<<<< HEAD
+                                                   force_save="1" />
+=======
+                                                   force_save="1"  invisible="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                            <field name="check_no" force_save="1"/>
+                                        </group>
+                                    </form>
+                                    <tree string="Deposits, Credits, and Interest"
+<<<<<<< HEAD
+                                          editable="top"
+                                    >
+                                        <field name="cleared_bank_account" force_save="1"/>
+                                        <field name="in_system" force_save="1"/>
+=======
+                                          editable="bottom"
+                                    >
+                                        <field name="cleared_bank_account" force_save="1"/>
+                                        <field name="not_in_system" force_save="1"/>
+                                        
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                        <field name="date" force_save="1"
+                                        />
+                                        <field name="type"
+                                               invisible="1"/>
+                                        <field name="name"
+                                               force_save="1"/>
+                                        <field name="ref" force_save="1"/>
+                                        <field name="partner_id"
+                                               force_save="1"  />
+                                        <field name="amount" force_save="1" sum="Total"
+                                        />
+                                        <field name="amountcur" force_save="1"
+                                        />
+                                        <field name="currency_id" force_save="1"
+                                        />
+<<<<<<< HEAD
+                                        <field name="research_required" force_save="1"/>
+                                        <field name="move_line_id" force_save="1"
+                                        />
+=======
+                                        <field name="research_required" force_save="1"  invisible="1"/>
+                                        <field name="move_line_id" force_save="1"  options="{'no_create': True}"/>
+                                        <field name="check_no" force_save="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                    </tree>
+                                </field>
+                                <!-- <label for='account_label2'
+                                       string='Checks, Withdrawals, Debits, and Service Charges'/> -->
+                                <field colspan="4"
+                                       name="credit_move_line_ids"
+                                       widget="one2many_list"
+                                       height="300"  >
+                                    <form string="Checks, Withdrawals, Debits, and Service Charges">
+                                        <group col="4">
+                                            <field name="cleared_bank_account" force_save="1"/>
+<<<<<<< HEAD
+                                            <field name="in_system" force_save="1"/>
+=======
+                                            <field name="not_in_system" force_save="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                            <field name="date" force_save="1"
+                                            />
+                                            <field name="name" force_save="1"
+                                            />
+                                            <field name="ref" force_save="1"
+                                            />
+                                            <field name="partner_id" force_save="1"
+                                            />
+<<<<<<< HEAD
+                                            <field name="amount" force_save="1"
+=======
+                                            <field name="amount" force_save="1" sum="Total"
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                            />
+                                            <field name="amountcur" force_save="1"
+                                            />
+                                            <field name="currency_id" force_save="1"
+                                            />
+<<<<<<< HEAD
+                                            <field name="research_required" force_save="1"
+=======
+                                            <field name="research_required" force_save="1" invisible="1"
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                            />
+                                            <field name="check_no" force_save="1"/>
+                                        </group>
+                                    </form>
+                                    <tree string="Checks, Withdrawals, Debits, and Service Charges"
+<<<<<<< HEAD
+                                          editable="top">
+                                        <field name="cleared_bank_account"/>
+                                        <field name="in_system" force_save="1"/>
+=======
+                                          editable="bottom">
+                                        <field name="cleared_bank_account"/>
+                                        <field name="not_in_system" force_save="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                        <field name="date"
+                                        />
+                                        <field name="name"
+                                        />
+                                        <field name="ref"/>
+                                        <field name="type" invisible="1"/>
+                                        <field name="partner_id"
+                                        />
+<<<<<<< HEAD
+                                        <field name="amount"
+=======
+                                        <field name="amount" sum="Total"
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                        />
+                                        <field name="amountcur"
+                                        />
+                                        <field name="currency_id"
+                                        />
+<<<<<<< HEAD
+                                        <field name="research_required"/>
+                                        <field name="move_line_id"
+                                        />
+=======
+                                        <field name="research_required" invisible="1"/>
+                                        <field name="move_line_id"  options="{'no_create': True}"
+                                        />
+                                        <field name="check_no" force_save="1"/>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                    </tree>
+                                </field>
+                                <group col="2" colspan="1"
+                                       groups="account_banking_reconciliation.group_bank_stmt_verifier">
+                                    <button name="action_select_all"
+                                            confirm="Current edits in statement will be lost. Do you want to select all?"
+                                            type="object"
+<<<<<<< HEAD
+                                            states="draft,to_be_reviewed"
+=======
+                                            states="finance_officer"
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                            string="Select All"
+                                            icon="fa-check"/>
+                                    <button name="action_unselect_all"
+                                            confirm="Current edits in statement will be lost. Do you want to unselect all?"
+                                            type="object"
+<<<<<<< HEAD
+                                            states="draft,to_be_reviewed"
+=======
+                                            states="finance_officer"
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                                            string="Unselect All"
+                                            icon="fa-close"/>
+                                </group>
+                                <!--                            <group name="totals" string="Totals">-->
+                                <!--                                <group name="total1" string="Cleared">-->
+                                <!--                                    <field name="sum_of_debits"/>-->
+                                <!--                                    <field name="sum_of_debits_cur"/>-->
+                                <!--&lt;!&ndash;                                    <field name="sum_of_debits_lines"/>&ndash;&gt;-->
+                                <!--                                    <field name="sum_of_credits"/>-->
+                                <!--                                    <field name="sum_of_credits_cur"/>-->
+                                <!--&lt;!&ndash;                                    <field name="sum_of_credits_lines"/>&ndash;&gt;-->
+                                <!--                                </group>-->
+                                <!--                                <group name="total2" string="Uncleared">-->
+                                <!--                                    <field name="sum_of_udebits"/>-->
+                                <!--                                    <field name="sum_of_udebits_cur"/>-->
+                                <!--                                    <field name="sum_of_udebits_lines"/>-->
+                                <!--                                    <field name="sum_of_ucredits"/>-->
+                                <!--                                    <field name="sum_of_ucredits_cur"/>-->
+                                <!--                                    <field name="sum_of_ucredits_lines"/>-->
+                                <!--                                </group>-->
+                                <!--                            </group>-->
+                                <group name="balances" string="Balances">
+                                    <group name="balance1" string="Cleared">
+                                        <field name="cleared_balance"/>
+                                        <field name="cleared_balance_cur"
+                                               attrs="{'invisible':[('cleared_balance_cur','=', 0.0)]}"/>
+                                        <field name="difference"/>
+                                        <field name="difference_cur"
+                                               attrs="{'invisible':[('cleared_balance_cur','=', 0.0)]}"/>
+                                    </group>
+                                    <group name="balance2" string="Uncleared">
+                                        <field name="uncleared_balance"/>
+                                        <field name="uncleared_balance_cur"
+                                               attrs="{'invisible':[('uncleared_balance_cur','=', 0.0)]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Other Information">
+                                <group string="Tracking Information">
+                                    <group>
+                                        <field name="prepared_by_user_id"
+                                               />
+
+                                        <field name="validated_by_user_id"
+                                               />
+                                        <field name="reviewed_by_user_id"
+                                               />
+                                        <field name="approved_date_by_user_id"
+                                               />
+                                    </group>
+                                    <group>
+                                        <field name="prepared_date"
+                                               />
+                                        <field name="validated_date"
+                                               />
+                                        <field name="reviewed_date"
+                                               />
+                                        <field name="approved_date"
+                                               />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Notes">
+                                <field name="notes"
+                                       placeholder="Enter notes about reconciliation"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_bank_acc_rec_statement_filter" model="ir.ui.view">
+            <field name="name">bank.acc.rec.statement.select</field>
+            <field name="model">bank.acc.rec.statement</field>
+            <field name="arch" type="xml">
+                <search string="Search Bank Account Reconciliation Statements">
+                    <filter name="draft" icon="terp-document-new" string="Draft"
+                            domain="[('state','=','draft')]"
+                            help="Statements that haven't yet been confirmed"/>
+                    <filter name="to_be_reviewed" icon="terp-dolar" string="To be Reviewed"
+                            domain="[('state','=','to_be_reviewed')]"
+                            help="Statements that are ready for review"/>
+                    <filter name="done" icon="terp-check" string="Done"
+                            domain="[('state','=','done')]"
+                            help="Statements that have been processed"/>
+                    <separator orientation="vertical"/>
+                    <field name="name" select="1"/>
+                    <field name="ending_date" select="1" string="Ending Date"/>
+                    <field name="account_id" select="1"/>
+                    <field name="approved_date_by_user_id" select="1">
+                        <filter name="approved_date_by_user_id" domain="[('approved_date_by_user_id','=',uid)]"
+                                
+                                icon="terp-personal"/>
+                    </field>
+                    <field name="reviewed_by_user_id" select="1">
+                        <filter name="reviewed_by_user_id" domain="[('reviewed_by_user_id','=',uid)]"
+                               
+                               icon="terp-personal"/>
+                    </field>
+                    <field name="validated_by_user_id" select="1">
+                        <filter name="validated_by_user_id" domain="[('validated_by_user_id','=',uid)]"
+                                
+                               icon="terp-personal"/>
+                    </field>
+                    <field name="prepared_by_user_id" select="1">
+                        <filter name="prepared_by_user_id" domain="[('prepared_by_user_id','=',uid)]"
+                                
+                               icon="terp-personal"/>
+                    </field>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter name="account_id" string="Account" icon="terp-personal" domain="[]"
+                                context="{'group_by':'account_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter name="state" string="State"
+                                icon="terp-stock_effects-object-colorize"
+                                domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_bank_acc_rec_statement" model="ir.actions.act_window">
+            <field name="name">Bank Statements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.acc.rec.statement</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+        <menuitem id="bank_acc_rec_statement_menu"
+                  action="action_bank_acc_rec_statement"
+                  parent="account.menu_finance_entries"
+                  sequence="5"/>
+
+        <!-- <act_window id="act_account_move_line_to_add" name="Journal Items"
+                    res_model="account.move.line"
+                    src_model="bank.acc.rec.statement"/>
+
+        <act_window id="act_supplier_payment_to_add" name="Supplier Payment"
+                    domain="[('voucher_type', 'in', ['bank', 'cash'])]"
+                    context="{'type':'payment'}" res_model="account.voucher"
+                    src_model="bank.acc.rec.statement"/>
+
+        <act_window id="act_customer_payment_to_add" name="Customer Payment"
+                    domain="[('voucher_type', 'in', ['bank', 'cash'])]"
+                    context="{'type':'receipt'}" res_model="account.voucher"
+                    src_model="bank.acc.rec.statement"/> -->
+
+    </data>
+</odoo>

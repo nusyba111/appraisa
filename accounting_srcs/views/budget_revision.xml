@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="budget_revision_view_form" model="ir.ui.view">
+        <field name="name">budget.revision.view.form</field>
+        <field name="model">budget.revision</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Confirm" name="confirm_officer" type="object" class="oe_highlight" states="draft"/>
+                    <button string="Approve Mnager" name="confirm_manager" type="object" class="oe_highlight" states="confirm"/>
+                    <button string="validate" name="change_budget_data" type="object" class="oe_highlight" states="finance_manager"/>
+                    <button string="cancel" name="cancel" type="object" class="oe_highlight" states="finance_manager"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- <group> -->
+                            <field name="name" />
+                        <!-- </group> -->
+                        <group>
+
+                            <field name="requested_date" />
+                            <field name="budget_id" />
+                            <field name="budget_change"/>
+                        </group>
+                        <group>
+                            <!-- <field name="requeted_amount" attrs="{'invisible':[('budget_change','=','basic_info')]}"/> -->
+                            <field name="currency_id" />
+                            <field name="budget_currency" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Budget Lines" attrs="{'invisible':[('budget_change','!=','add_budget_line')]}">
+                            <field name="budget_line_ids">
+                                <tree editable="bottom">
+                                   
+                                    <field name="date_from" />
+                                    <field name="date_to" />
+                                    <field name="general_budget_id" />
+                                    <field name="analytic_activity_id" string="output" domain="[('type','=','activity')]"/>
+                                    <field name="description"/>
+                                    <field name="location_id"/>
+                                    <field name="unit_of_measure" invisible="1"/>
+                                    <field name="quantity" />
+                                    <field name="frequency" />
+                                    <field name="unit_cost" />
+                                    <field name="currency_budget_line" invisible="1" force_save="1" readonly="False"/>
+                                    <field name="total_budget" sum="total_budget" force_save="1"/>
+                                    <field name="planned_amount" sum="planned_amount" force_save="1"/>
+                                  </tree>
+                                
+                            </field>
+                             
+                        </page>
+                        <page string="Basic Info" attrs="{'invisible':[('budget_change','!=','basic_info')]}">
+                            <group>
+                                <group>
+                                    <field name="user_id" />
+                                </group>
+                                <group>
+                                    <label for="date_from" string="Period"/>
+                                    <field name="date_from" />
+                                    <field name="date_to" />
+                                </group>
+                            </group>
+                           
+                        </page>
+                        <page string="Transfer Amount" attrs="{'invisible':[('budget_change','!=','transfer_amount')]}">
+                            <field name="transfer_amount_line_ids" >
+                                <tree editable="bottom">
+                                    <field name="budget_id" invisible="1"/>
+                                    <field name="transfer_from" />
+                                    <field name="transfered_from_limit" />
+                                    <field name="from_limit" />
+                                
+                                    <field name="transfer_to" />
+                                    <field name="transfered_to_limit" />
+                                    <field name="to_limit" />
+                                    <field name="requeted_amount" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Modify Budget Line Total" attrs="{'invisible':[('budget_change','!=','modify_line')]}">
+                            <field name="modify_budget_line_total_ids">
+                                <tree editable="bottom">
+                                    <field name="budget_id" invisible="1"/>
+                                    <field name="budget_line" />
+                                    <field name="budget_line_limit" />
+                                    <field name="requeted_amount" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="budget_revision_view_tree" model="ir.ui.view">
+        <field name="name">budget.revision.view.tree</field>
+        <field name="model">budget.revision</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="requested_date" />
+                <field name="currency_id" />
+                <!--field name="requeted_amount" /-->
+                <field name="budget_id" />
+                <field name="budget_change"/>
+            </tree>
+        </field>
+    </record>
+    <record id="budget_revision_action" model="ir.actions.act_window">
+        <field name="name">Budget Revision</field>
+        <field name="res_model">budget.revision</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   
+</odoo>

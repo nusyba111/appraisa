@@ -1,0 +1,60 @@
+<odoo>
+	<data>
+<!-- Main Data report wizard -->
+		<record model="ir.ui.view" id="main_report_wizard_view">
+		    <field name="name">Main Data Report wizard</field>
+		    <field name="model">main.data.report</field>
+		    <field name="arch" type="xml">
+		      	<form>
+		      		<sheet>
+                        <group>
+                            <group>
+                                <field name="date_from"/>
+                                <!-- <field name ="user_id" widget ="many2many_tags"/> -->
+                            </group>
+                            <group>
+                                <field name="date_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+		      		<footer>
+		      			<button name='print' string='Print' type='object' class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+		      		</footer>
+		      	</form>
+		    </field>
+		</record>
+        
+ <!--Main Data Report -->
+		<record model="ir.actions.act_window" id="data_report_wizard_action">
+		    <field name="name">Puchases Report Wizard</field>
+		    <field name="res_model">main.data.report</field>
+		    <field name="view_mode">form</field>
+		    <field name="target">new</field>
+		</record>
+
+        <record model="ir.ui.view" id="view_data_report_excel">
+            <field name="name">data.report.wiz.excel</field>
+            <field name="model">data.report.wiz.excel</field>
+            <field name="arch" type="xml">
+                <form string="File to Downloads">
+                    <field name="name" invisible="1"/>
+                    <field name="file_download" filename="name"/>
+                
+                <footer>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+		      	</footer>
+		      	</form>
+            </field>
+        </record>
+
+        
+		<menuitem id="data_report_wizard"
+            name="Main Data Report"
+            parent="hr_contract_reports.menu_report_contract_employee_all"
+            action="data_report_wizard_action"
+            sequence="6"/>
+
+	</data>
+</odoo>

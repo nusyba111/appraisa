@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_service_order" model="ir.actions.report">
+        <field name="name">Services Order</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">srcs_purchase.service_order_template_id</field>
+        <field name="report_file">srcs_purchase.service_order_template_id</field>
+        <field name="binding_model_id" ref="model_purchase_order"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="service_order_template_id">
+        <div style="border:black solid 2px ; margin:10px">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="article o_report_layout_standard">
+                        <t t-call="srcs_purchase.custom_header_footer"/>
+                        <div class="page">
+                            <br/>
+                            <h1 class="text-center" style="width:100%;">
+                                <u>
+                                    <strong>SERVICE ORDER</strong>
+                                </u>
+                            </h1>
+                            <table>
+                                <tr>
+                                    <td class="text-left">
+                                        <strong>From:</strong>
+                                        <span t-esc="o.company_id.name"/>
+                                        <font color="#FFFFFF">Bbbbbb</font>
+                                    </td>
+                                    <td class="text-left">
+                                        <strong>Service Order No:</strong>
+                                        <span t-esc="o.name"/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td class="text-left">
+                                        <span t-esc="o.company_id.street"/>
+                                        <font color="#FFFFFF">Bbbbbb</font>
+                                    </td>
+                                    <td>
+                                        <strong>Date:</strong>
+                                        <span t-esc="o.date_planned"/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td class="text-left">
+                                        <strong>Tel#:</strong>
+                                        <span t-esc="o.company_id.phone"/>
+                                        <font color="#FFFFFF">
+                                            Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                                        </font>
+                                    </td>
+                                    <td class="text-left">
+                                        <strong>Mobile#:</strong>
+                                        <span t-esc="o.company_id.mobile"/>
+                                        <font color="#FFFFFF">
+                                            Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                                        </font>
+                                    </td>
+                                    <td class="text-left">
+                                        <strong>Fax#:</strong>
+                                        <span t-esc="o.company_id.fax"/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <strong>Requisition no:</strong>
+                                        <span t-esc="o.purchase_request_id.sequence"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o.donor_id.name"/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <strong>To:</strong>
+                                        <span t-esc="o.partner_id.name"/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <strong>Contact Person Name:</strong>
+                                        <span t-esc="o.partner_ref"/>
+                                    </td>
+                                    <td>
+                                        <strong>Mobile#:</strong>
+                                    </td>
+                                    <td>
+                                        <strong>address:</strong>
+                                    </td>
+                                </tr>
+                                <br/>
+                            </table>
+                            <br/>
+                            <t t-set="i" t-value="1"/>
+                            <t t-if="o.service==True">
+                                <table class="table table-condensed table-bordered" border="2" dir="ltr">
+                                    <thead>
+                                        <th class="text-left;font-size:45px">
+                                            <strong>No</strong>
+                                        </th>
+                                        <th class="text-left;font-size:45px">
+                                            <strong>Service Description</strong>
+                                        </th>
+                                        <th class="text-left;font-size:45px">
+                                            <strong>Quantity</strong>
+                                        </th>
+                                        <th class="text-left;font-size:45px">
+                                            <strong>Unit Price SDG</strong>
+                                        </th>
+                                        <th class="text-left;font-size:45px">
+                                            <strong>Unit of Measurement Uom</strong>
+                                        </th>
+                                        <th class="text-left;font-size:45px">
+                                            <strong>Total Price</strong>
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.order_line" t-as="line">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="i"/>
+                                                    <t t-set="i" t-value="i+1"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="line['name']"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="line['product_qty']"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="line['price_unit']"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="line['product_uom'].name"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="line['price_subtotal']"/>
+                                                </td>
+                                            </tr>   </t>
+                                            <tr>
+                                                <td class="text-center" colspan="5">
+                                                    <strong>Subtotal</strong>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="o['amount_untaxed']"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" colspan="5">
+                                                    <strong>Vat%</strong>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="o['amount_tax']"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" colspan="5">
+                                                    <strong>Grand Total</strong>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="o['amount_total']"/>
+                                                </td>
+                                            </tr>
+                                     
+                                    </tbody>
+                                </table>
+                                <p class="text-left">Scope of Service: As per the attached file and the supplier
+                                    offer.
+                                </p>
+                            </t>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left">
+                                            <strong>Service Time:</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <strong>Delivery Location:</strong>
+                                            <span t-esc="o['picking_type_id'].warehouse_id.partner_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <strong>Payment Method(Terms):</strong>
+                                            <span t-esc="o['payment_term_id'].name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <strong>Total Amount in words:</strong>
+                                            <span t-esc="o['total_amount_in_words']"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <strong>Service Order Currency:</strong>
+                                            <span t-esc="o['currency_id'].name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <strong>Delivery Time:</strong>
+                                            <span t-esc="o['arrival_date']"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left" width="90%">
+                                            <h3>Others:</h3>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <strong>Funded:</strong>
+                                            <span t-esc="o['partner_id'].name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="text-left">
+                                                <h4>Remarks:</h4>
+                                            </p>
+                                            <ul>
+                                                <li>The contractor has to stamp all the pages of the attached general
+                                                    terms and conditions for Service Order in addition to the scope of
+                                                    the service in details as an acknowledgement
+                                                </li>
+                                                <li>Also please sign the attached scope of service (all the pages)</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-left">
+                                <h2>
+                                    <strong>Vendor (Contractor) confirmation:</strong>
+                                </h2>
+                            </p>
+                            <table class="table table-condensed table-bordered" border="0">
+                                <thead>
+                                    <th class="text-left;font-size:45px">
+                                        <strong>Name</strong>
+                                    </th>
+                                    <th class="text-left;font-size:45px">
+                                        <strong>Position</strong>
+                                    </th>
+                                    <th class="text-left;font-size:45px">
+                                        <strong>Signature</strong>
+                                    </th>
+                                    <th class="text-left;font-size:45px">
+                                        <strong>Stamp</strong>
+                                    </th>
+                                    <th class="text-left;font-size:45px">
+                                        <strong>Date</strong>
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <td class="text-left"></td>
+                                    <td class="text-left">   <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <table class="table table-condensed table-bordered" border="0">
+                                <thead>
+                                    <tr style="height:5pt;">
+                                        <th class="text-left">
+                                            <strong>The Approval Table</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong>Name</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong>Department</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong>Signature</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong>Remarks and Comments</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="docs" t-as="doc">
+                                        <tr style="height:3pt;">
+                                            <td class="text-left">
+                                                <strong>Prepared</strong>
+                                            </td>
+                                            <td class="text-left"><span t-esc="o.purchase_request_id.program_coordinator.name"/></td>
+                                            <td class="text-left">   <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t></td>
+                                            <td class="text-left"></td>
+                                            <td class="text-left"></td>
+                                        </tr>
+                                        <tr style="height:3pt;">
+                                            <td class="text-left">
+                                                <strong>Reviewed by</strong>
+                                            </td>
+                                            <td class="text-left"></td>
+                                            <td class="text-left">   <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t></td>
+                                            <td class="text-left"></td>
+                                            <td class="text-left"></td>
+                                        </tr>
+                                        <tr style="height:3pt;">
+                                            <td class="text-left">
+                                                <strong>User Department Request Initiator</strong>
+                                            </td>
+                                            <td class="text-left"><span t-esc="o.purchase_request_id.department_user.name"/></td>
+                                            <td class="text-left">   <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t></td>
+                                            <td class="text-left"></td>
+                                            <td class="text-left"></td>
+                                        </tr>
+                                        <tr style="height:3pt;">
+                                            <td class="text-left">
+                                                <strong>User Department Manager Approval</strong>
+                                            </td>
+                                            <td class="text-left"><span t-esc="o.purchase_request_id.finance_user.name"/></td>
+                                            <td class="text-left">   <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t></td>
+                                            <td class="text-left"></td>
+                                            <td class="text-left"></td>
+                                        </tr>
+                                        <tr style="height:3pt;">
+                                            <td class="text-left">
+                                                <strong>Approved By</strong>
+                                            </td>
+                                            <td class="text-left"><span t-esc="o.purchase_request_id.secratry_general.name"/></td>
+                                            <td class="text-left">   <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t></td>
+                                            <td class="text-left"></td>
+                                            <td class="text-left"></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </div>
+    </template>
+</odoo>
+
+
+

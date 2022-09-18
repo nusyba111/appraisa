@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="budget_line_transfer_view_form" model="ir.ui.view">
+        <field name="name">budget.line.transfer.view.form</field>
+        <field name="model">budget.line.transfer</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Transfer Amount" name="transfer_amount" type="object" class="oe_highlight" states="confirm"/>
+                    <button string="Confirm" name="confirm_officer" type="object" class="oe_highlight" states="draft"/>
+                    <!-- <button string="Approve Mnager" name="confirm_manager" type="object" class="oe_highlight" states="confirm"/> -->
+                    <button string="validate" name="validate" type="object" class="oe_highlight" states="finance_manager"/>
+                    <button string="cancel" name="cancel" type="object" class="oe_highlight" states="finance_manager"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- <group> -->
+                            <field name="sequence" />
+                        <!-- </group> -->
+                        <group>
+
+                            <field name="requested_date" />
+                            <field name="budget_id" />
+                        </group>
+                        <group>
+                            <field name="requeted_amount" />
+                            <field name="currency_id" />
+                            <field name="budget_currency" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Budget Lines">
+                            <group>
+                                <group>
+                                    <field name="transfer_from" />
+                                    <field name="transfered_from_limit" />
+                                    <field name="from_limit" />
+                                </group>
+                                <group>
+                                    <field name="transfer_to" />
+                                    <field name="transfered_to_limit" />
+                                    <field name="to_limit" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="budget_line_transfer_view_tree" model="ir.ui.view">
+        <field name="name">budget.line.transfer.view.tree</field>
+        <field name="model">budget.line.transfer</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="requested_date" />
+                <field name="currency_id" />
+                <field name="requeted_amount" />
+                <field name="budget_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="budget_line_transfer_action" model="ir.actions.act_window">
+        <field name="name">Transfer Operation</field>
+        <field name="res_model">budget.line.transfer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="budget_operation_menu"
+        name="Budget Operation"
+        parent="accounting_srcs.budgeting_menu"
+        sequence="5"/>
+    <menuitem
+        id="transfer_menu"
+        parent="budget_operation_menu"
+        action="budget_line_transfer_action"
+        sequence="1"/>
+</odoo>

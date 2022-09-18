@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+<report
+    id="acc_bank_report"
+    model="bank.acc.rec.statement"
+    string="Bank Reconciliation"
+    report_type="qweb-pdf"
+    name="account_banking_reconciliation.bank_report"
+    file="account_banking_reconciliation.bank_report"
+/>
+
+
+
+<record id="paperformat_euro" model="report.paperformat">
+            <field name="name">European A4</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+<record id="account_banking_reconciliation.acc_bank_report" model="ir.actions.report">
+    <field name="paperformat_id" ref="account_banking_reconciliation.paperformat_euro" />
+</record>
+
+  </data>
+</odoo>

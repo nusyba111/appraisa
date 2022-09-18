@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+         <report id="red_interview_report"
+            string="Interview Report"
+            model="hr.applicant"
+            report_type="qweb-pdf"
+            name="hr_application_srcs.srcs_interview_reports"
+            file="hr_application_srcs.srcs_interview_reports"/>
+
+    <template id="srcs_interview_reports">
+     
+         <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="oe_structure">
+                        <div class="article mt0 o_report_layout_standard" dir="ltr">
+                        	<h5 style='text-align:center;font-family:verdana;'><strong>INTERVIEW FORM</strong></h5>
+                        	<h5 style='text-align:center;font-style:italic;'><strong> نموذج مقابلة توظيف</strong></h5>
+                        	<!-- <p><strong>Name</strong><br/>الاسم</p> -->
+
+                        <table>
+                            <tr>
+                                <td><strong>Name</strong><br/>الاسم</td>
+                                <td style="border: 1px solid black;"><span t-esc="frist_name"/></td>
+                                <td> </td>
+                                <td> </td>
+                                <td><strong>Position</strong><br/>الوظيفة</td>
+                                <td style="border: 1px solid black;"><span t-esc="frist_name"/></td>
+                             </tr>
+                             <tr>
+                                <td><strong>Nationality</strong><br/>الجنسية</td>
+                                <td style="border: 1px solid black;"><span t-esc="frist_name"/></td>
+                                <td> </td>
+                                <td> </td>
+                                <td><strong>Date</strong><br/>التاريخ</td>
+                                <td style="border: 1px solid black;"><span t-esc="frist_name"/></td>
+                             </tr>
+                        </table>
+                        <table class="table table-condensed table-bordered" style="border:2px solid black;">
+                                      
+                            <tr style="border:2px solid black;background-color:  #A8A8A8;">
+                               <td class="text-center" style="border:2px solid black;width: 20%;font-style:italic;" t-att-colspan="2"> <strong>A-  Personal Skills     المهارات الفردية</strong></td>
+                               <td class="text-left" style="border:2px solid black;width: 10%;"> <strong>Wt.</strong></td>
+                               <td class="text-left" style="border:2px solid black;width: 10%;"> <strong>Poor  ضعيف</strong></td>
+                               <td class="text-left" style="border:2px solid black;width: 10%;"> <strong>Good  جيد</strong></td>
+                               <td class="text-left" style="border:2px solid black;width: 10%;"> <strong>V. Good  جيد جداً</strong></td>
+                               <td class="text-left" style="border:2px solid black;width: 10%;"> <strong>Excellent ممتاز</strong></td>
+                               <td class="text-left" style="border:2px solid black;width: 20%;"><strong>Score</strong></td>
+                               <!-- <td ><span t-esc="o.frist_name"/> </td> -->
+                           </tr>
+                           <tr style="border:2px solid black;background-color:  #A8A8A8;">
+                               <td class="text-center" style="border:2px solid black;width: 30%;" t-att-colspan="2"><strong>Rating  التقديــــر</strong></td>
+                               <td class="text-left" style="border:2px solid black;width: 10%;"><strong>الوزن</strong></td>
+                               <td class="text-left" style="border:2px solid black;width: 10%;"> <strong>1</strong></td>
+                               <td class="text-center" style="border:2px solid black;width: 10%;"> <strong>2</strong></td>
+                               <td class="text-center" style="border:2px solid black;width: 10%;"> <strong>3</strong></td>
+                               <td class="text-center" style="border:2px solid black;width: 10%;"> <strong>4</strong></td>
+                               <td class="text-center" style="border:2px solid black;width: 20%;"><strong> مجموع النقاط<span t-esc="frist_name"/></strong></td>
+                               <!-- <td ><span t-esc="o.frist_name"/> </td> -->
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">1-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;" ><strong>Interpersonal Relations   إقامة علاقات بناءة</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">2-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Verbal Comm and Present.   مهارات التحدث والعرض</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">3-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Image   الإنطباع</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">4-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Confidence    الثقة بالنفس والكفاءه</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">5-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Work Standards   تحديد  مستويات أداء العمل والنتائج</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">6-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Attention to Details    الإنتباه لدقة التفاصيل</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">7-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Analysis   التحليل</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">8-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Control   وضع آليات مراقبة وتقييم  المهمات</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">9-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Decision Making اسلوب وكيفية الوصول لإتخاذ القرار</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">10-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Delegation   تكليف المهمات للموظفين</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">11-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Subordinate Development  قدرات تطوير العمالة</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">12-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Adaptability    القدرة على التكييف</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+
+                       </table>
+                       <table class="table table-condensed table-bordered" style="border:2px solid black;">
+                                      
+                            <tr style="border:2px solid black;background-color:  #A8A8A8;">
+                               <td class="text-center" style="border:2px solid black;width: 20%;font-style:italic;" t-att-colspan="8"> <strong>B-  Education and Practical Experience    التحصيل العلمى والخبرة العملية</strong></td>
+                           </tr>
+                           
+                           
+                           <tr style="border:2px solid black;background-color:  #A8A8A8;">
+                               <td class="text-center" style="border:2px solid black;width: 30%;" t-att-colspan="8"><strong>Linguistics    قدرات لغوية</strong></td>
+                               
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;" t-att-rowspan="2">1-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;" ><strong>a. English    اللغة الإنجليزية</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                           </tr>
+                           <tr style="border:2px solid black;">
+                               <td class="text-left" style="border:2px solid black;width: 30%;" ><strong>b. Arabic    اللغة العربية</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">2-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Management and Planning Skills    مهارات الإدارة والتخطيط</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">3-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Business Development Skills    مهارات تطوير الأعمال</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">4-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Budget Preparation     تحضير الميزانيات</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">5-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Administration Capabilities    الكفاءات الإدارية</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">6-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Industry Knowledge    الإلمام بالصناعة</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">7-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Technical Aptitude    الكفاءة الفنية</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            <td class="text-left" style="border:2px solid black;width: 5%;">8-</td>
+                               <td class="text-left" style="border:2px solid black;width: 30%;"><strong>Educational Level    مستوى التحصيل العلمى</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                            
+                               <td class="text-center" style="border:2px solid black;width: 30%;" t-att-colspan="2"><strong>المجموع</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+                               <td t-att-colspan="4"><span t-esc="o.frist_name"/> </td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                           <tr style="border:2px solid black;">
+                               <td class="text-center" style="border:2px solid black;width: 30%;color:black;" t-att-colspan="7"><strong>Total Score  المجمـــوع الكلى</strong></td>
+                               <td ><span t-esc="o.frist_name"/> </td>
+
+                           </tr>
+                       </table>
+                       <div class="table table-bordered" t-att-colspan="9">
+                           <div>
+                                 <p class="text-right" style="width: 5%;" t-att-rowspan="5"><strong>7-</strong></p>                                 
+                                 <td class="text-center" style="border:2px solid black;background-color:  #A8A8A8;" t-att-colspan="7"><strong>Work Details    الخبرات العمليه</strong></td>
+                              </div>
+                              <tr class="table table-bordered"  >
+                                 <td>
+                                    <span t-field="o.frist_name"/>
+                                 </td>
+                              </tr>
+                          </div>
+                          <br/>
+                       <table class="table table-bordered"  t-att-colspan="9">
+                           <tr  >
+                                 <td class="text-right" style="border:2px solid black;background-color:  #A8A8A8;" t-att-colspan="6"><strong>Training / Seminars               دورات تدريبية</strong></td>                                 
+                                 <td class="text-center" style="border:2px solid black;background-color:  #A8A8A8;" t-att-colspan="3"><strong>Achievements           الإنجازات</strong></td>
+                              </tr>
+                              <t t-foreach ="o.ed_course" t-as="line">
+                              <tr> 
+                                 <td t-att-colspan="6">
+                                       <span t-field="line.course_title"/>
+                                 </td>
+                                 <td t-att-colspan="3">
+                                    <span t-field="line.course_location"/>
+                                 </td>
+                              </tr>
+                              </t>
+                           </table>
+                           <!-- <table cellspacing="0" cellpadding="0">  -->
+                           <!-- <table >
+                               <tr>
+                                     <th class="text-right"><strong>General Comments:</strong></th>
+                                     <th class="text-center"></th>  
+                                     <th class="text-center"></th>  
+                                     <th class="text-center"></th>  
+                                     <th class="text-center"></th>                                 
+                                     <th class="text-center"></th>     
+                                     <th class="text-left"><strong>ملاحظات عامة</strong></th>
+                                  </tr>
+                                  <tr >
+                                    <th t-att-colspan="9"><span t-field="o.frist_name"/></th>
+                                </tr> 
+                                <br/>
+                                  <tr>
+                                     <th >Interviewed by :<br/>اسم المقابل<span t-field="o.frist_name"/></th>
+                                     <th >Date :<br/>التاريخ<span t-field="o.frist_name"/></th>
+                                  </tr>
+                                  <tr>
+                                    <th >Recommendation :<br/>التوصية<span t-field="o.frist_name"/></th>
+                                </tr>
+                            </table> -->
+                            <table dir="rtl" class="table table-bordered" style="border: 2px solid black;">
+                                <tr>
+                                    <td class="text-right"
+                                        colspan="8">
+                                        <strong style="font-size:20px">
+                                           ملاحظات عامة
+                                        </strong>
+                                        <strong style="float:left;font-size:20px">
+                                            General Comments:
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  class="text-right"
+                                        colspan="8">
+                                        <strong style="font-size:10px">
+                                           Date :<br/>التاريخ<span t-field="o.frist_name"/>
+                                        </strong>
+                                        <strong style="float:left;font-size:10px">
+                                            اسم المقابل Interviewed by :<span t-field="o.frist_name"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  class="text-left"
+                                        colspan="8">
+                                        <strong style="font-size:10px">
+                                          
+                                        </strong>
+                                        <strong style="font-size:10px">
+                                            Recommendation :<br/>التوصية<span t-field="o.frist_name"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table>
+                                <td class="text-left">
+                                    <tr><strong>1-Job Title: </strong></tr>
+                                    <tr><strong>2-Category: </strong></tr>
+                                    <tr><strong>3-Grade: </strong></tr>
+                                    <tr><strong>4-Sector/ Department/ Section/ Unit: </strong></tr>
+                                    <tr><strong>5-Direct Supervisor: </strong></tr>
+                                    <tr><strong>6-Work Location: </strong></tr>
+                                    <tr><strong>7-Status: </strong></tr>
+                                    <tr><strong>8-Monthly Basic Salary :</strong></tr>
+                                    <tr><strong>9-Housing: </strong></tr>
+                                    <tr><strong>10-Transport.: </strong></tr>
+                                    <tr><strong>11-Weekly Working Hours: </strong></tr>
+                                    <tr><strong>12-Medical :</strong></tr>
+                                    <tr><strong>13-Annual Vacation: </strong></tr>
+                                    <tr><strong>14- Contract Period:</strong></tr>
+                                    <tr><strong>15-Probation Period: </strong></tr>
+                                    <tr><strong>16-Expected Joining Date: </strong></tr>
+                                    <tr><strong>17 Other Conditions:</strong></tr>
+                                    <tr><strong>a. </strong></tr>
+                                    <tr><strong>b. </strong></tr>
+                                    <tr><strong>c. </strong></tr>
+                                    <tr><strong>d. </strong></tr>
+                                    <tr><strong>e.</strong></tr>
+                                </td>
+                                <td class="text-right">
+                                    <tr><strong>1-المسمى الوظيفي: </strong></tr>
+                                    <tr><strong>2-الفئة الوظيفية: </strong></tr>
+                                    <tr><strong>3-الدرجة الوظيفية: </strong></tr>
+                                    <tr><strong>4-القطاع/ الإدارة/ القسم/ الوحدة: </strong></tr>
+                                    <tr><strong>5-الرئيس المباشر :</strong></tr>
+                                    <tr><strong>6-موقع العمل: </strong></tr>
+                                    <tr><strong>7-وضعية  العقد: </strong></tr>
+                                    <tr><strong>8-الراتب الأساسي الشهري : </strong></tr>
+                                    <tr><strong>9-السكن:</strong></tr>
+                                    <tr><strong>10-التنقل:</strong></tr>
+                                    <tr><strong>11-ساعات العمل </strong></tr>
+                                    <tr><strong>12-التأمين الطبي: </strong></tr>
+                                    <tr><strong>13-الإجازة السنوية: </strong></tr>
+                                    <tr><strong>14-مدة العقد: </strong></tr>
+                                    <tr><strong>15-فترة التجربة: </strong></tr>
+                                    <tr><strong>16-تاريخ الالتحاق المتوقع: </strong></tr>
+                                    <tr><strong>17-شروط أخرى : </strong></tr>
+                                    <tr><strong>ا</strong></tr>
+                                    <tr><strong>ب </strong></tr>
+                                    <tr><strong>ج </strong></tr>
+                                    <tr><strong>د </strong></tr>
+                                    <tr><strong>هـ</strong></tr>
+                                </td>
+                                <td class="text-center">
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    <tr> <span t-field="o.frist_name"></span></tr>
+                                    
+                                </td>
+                                
+                            </table>
+
+
+                            
+
+
+
+
+
+
+
+                              <!-- </t>
+                           </table>
+                           <br/>
+                           <table class="text-left" style="border:3px solid black;">
+                            
+                            <tr>
+                                <td > <strong>General Comments:</strong>  </td>
+                                <td ><strong>ملاحظات عامة </strong></td>
+                            </tr>
+                           
+                            <tr>
+                                <td >Interviewed by :<br/>اسم المقابل</td>
+                                <td ><span t-field="o.frist_name"/></td>
+                                <td >Date :<br/>التاريخ</td>
+                                <td ><span t-field="o.frist_name"/></td>
+
+                            </tr>
+                            <tr >
+                                <td >Recommendation :<br/>التوصية</td>
+                                <td ><span t-field="o.frist_name"/></td>
+                            </tr>
+                           </table> -->
+                        	<t t-call="hr_application_srcs.custom_interview_header" />
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

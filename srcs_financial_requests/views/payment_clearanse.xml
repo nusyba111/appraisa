@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="custody_clearance_view_form" model="ir.ui.view">
+        <field name="name">custody.clearance.view.form</field>
+        <field name="model">custody.clearance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Department" name="action_department" type="object" class="oe_highlight" states="draft"/>
+                    <button name="payment" type="object" string="Payment" class="oe_highlight" states="secretary"/>
+                    <button string="Finance" name="action_finance" type="object" class="oe_highlight" states="department"/>
+                    <button string="Confirm Internal Auditor" name="action_internal" type="object" class="oe_highlight" states="finance"/>
+                    <button string="Approve Secretary General" name="action_secretary" type="object" class="oe_highlight" states="internal"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="clearance_no"/>
+                        <h1>
+                            <field name="clearance_no" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="requester" />
+                            <field name="payment_request_id" />
+                            <field name="reason" />
+                        </group>
+                        <group>
+                            <field name="cc_date" />
+                            <field name="clearance_currency" />
+                            <field name="clearance_amount_new" attrs="{'readonly':[('state','not in',['draft'])]}" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="difference_amount" />
+                        </group>
+                    </group>
+                    <group col="4">
+                        <!-- <field name="journal_id" /> -->
+                        <field name="clearance_journal_id" />
+                        <field name="cr_account" />
+                        <field name="pay_from" />
+                    </group>
+                    <notebook>
+                        <page string="Cleared Amount">
+                            <group col="4">
+                                <!-- <field name="un_cleared_amount" force_save="1"/> -->
+                                <!-- <field name="clearance_amount" /> -->
+                                <field name="move_id" />
+                                <field name="move2_id" />
+                            </group>
+                        </page>
+                        <page string="Custody Clearance Details">
+                            <!-- <group> -->
+                                <field name="custody_clearance_line_ids" >
+                                    <tree editable="bottom">
+                                        <field name="account_id" />
+                                        <field name="payment_currency" invisible="1"/>
+                                        <field name="project_id" />
+                                        <field name="analytic_activity_id" />
+                                        <field name="location_id" invisible="0"/>
+                                        <field name="crossovered_budget_id" invisible="0"/>
+                                        <field name="donor_id" domain="[('customer_rank','=', 1)]"/>
+                                        <field name="currency_id" />
+                                        <field name="budget_balance" />
+                                        <field name="request_amount" />
+                                        <!-- <field name="attachment"/> -->
+                                    </tree>
+                                </field>
+                            <!-- </group> -->
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="custody_clearance_view_tree" model="ir.ui.view">
+        <field name="name">custody.clearance.view.tree</field>
+        <field name="model">custody.clearance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="clearance_no" />
+                <field name="requester" />
+                <field name="payment_request_id" />
+                <field name="clearance_amount_new" />
+                <field name="clearance_journal_id" />
+                <field name="pay_from" />
+                <!-- <field name="un_cleared_amount" /> -->
+                <field name="clearance_currency" />
+                <field name="move_id" />
+                <field name="move2_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_action_payment_clearance" model="ir.actions.act_window">
+        <field name="name">Payment Clearance</field>
+        <field name="res_model">custody.clearance</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">('is_branch_loans', '=', False)</field> -->
+    </record>
+   
+    <menuitem
+        id="Clearanse_menu"
+        name="Clearance"
+        parent="srcs_financial_requests.finacial_request_menu"
+        sequence="8"/>
+
+    <menuitem
+        id="payment_clearanse_menu"
+        name="Payment Clearance"
+        action="action_action_payment_clearance"
+        parent="Clearanse_menu"
+        sequence="1"/>
+</odoo>

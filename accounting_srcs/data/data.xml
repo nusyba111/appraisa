@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sequence_conversion_seq" model="ir.sequence">
+        <field name="name">Currency Conversion</field>
+        <field name="code">currency.conversion</field>
+        <field name="prefix">conversion/</field>
+        <field name="padding">3</field>
+        <field eval="False" name="company_id"/>
+    </record>
+    <record id="sequence_transfer_seq" model="ir.sequence">
+        <field name="name">Budget Transfer</field>
+<<<<<<< HEAD
+        <field name="code">budget.line.transfer</field>
+        <field name="prefix">Transfer/</field>
+=======
+        <field name="code">budget.revison</field>
+        <field name="prefix">Budget Revison/</field>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+        <field name="padding">3</field>
+        <field eval="False" name="company_id"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_currency_conversion,access_access_currency_conversion,model_currency_conversion,base.group_user,1,1,1,1
+<<<<<<< HEAD
+access_budget_line_transfer,access_acess_budget_line_transfer,model_budget_line_transfer,base.group_user,1,1,1,1
+=======
+access_budget_revision,access_acess_budget_revision,model_budget_revision,base.group_user,1,1,1,1
+access_budget_revision_lines,access_access_budget_revision_lines,model_budget_revision_line,base.group_user,1,1,1,1
+access_budget_transfer_amount,access_access_budget_transfer_amount,model_budget_transfer_amount,base.group_user,1,1,1,1
+access_modify_budget_line_total,access_access_modify_budget_line_total,model_modify_budget_line_total,base.group_user,1,1,1,1
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44

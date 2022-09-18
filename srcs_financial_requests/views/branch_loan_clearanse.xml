@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="branch_loan_clearanse_view_form" model="ir.ui.view">
+        <field name="name">branch.loan.clearanse.view.form</field>
+        <field name="model">branch.loan.clearanse</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+  
+                    <button string="Confirm Branch Finance" name="confrim_finance" type="object" class="oe_highlight" states="draft" groups="accounting_srcs.group_finance_director"/>
+                    <button string="Confirm Branch Director" name="confirm_branch_dir" type="object" class="oe_highlight" states="branch_finance" groups="accounting_srcs.group_branch_director"/>
+                    <button string="Approve Secretary" name="approve_secratry" type="object" class="oe_highlight" states="branch_director" groups="accounting_srcs.group_secretary_general"/>
+                    <button string="Confirm Finance Department" name="confirm_finance_department" type="object" class="oe_highlight" states="secratry_general" groups="accounting_srcs.group_finance_department"/>
+                    <button string="Approve Program Department" name="approve_program_department" type="object" class="oe_highlight" states="finance_department" groups="accounting_srcs.group_program_department"/>
+                    <button string="Confirm Internal Auditor" name="branch_loan_internal_auditor" type="object" class="oe_highlight"  states="program_department" groups="accounting_srcs.group_internal_auditor"/>
+                    <button string="Second Secretary Approval" name="second_approve_secretary" type="object" class="oe_highlight" states="internal_auditor" groups="accounting_srcs.group_secretary_general"/>
+                    <button string="Validate" name="validate_clearance" type="object" class="oe_highlight" states="secratry_general_two"/>
+                    <field name="state" widget="statusbar" statusbar_visible="darft,payment"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="requester" />
+                            <field name="branch_laons_id" />
+                            <field name="budget_line_id" />
+                           
+                        </group>
+                        <group>
+                            <field name="cc_date" />
+                            <field name="clearance_amount_new" />
+                            <field name="clearance_currency" />
+                            <field name="difference_amount" force_save="1" invisible="1"/>
+                        </group>
+                        
+                    </group>
+                    <group col="4">
+                        <field name="clearance_journal_id" />
+                        <field name="journal_id" />
+                    </group>
+                    <notebook>
+                        <page string="Cleared Amount">
+                            <group col="4">
+                                <field name="clearance_amount" />
+                                <!-- <field name="clearance_amount_words" /> -->
+                                <field name="un_cleared_amount" force_save="1"/>
+                                <field name="internal_transfer_id" />
+                                <!-- <field name="is_branch_loans" invisible="1"/> -->
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="branch_loan_clearanse_view_tree" model="ir.ui.view">
+        <field name="name">branch.loan.clearanse.view.tree</field>
+        <field name="model">branch.loan.clearanse</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="requester" />
+                <field name="branch_laons_id" />
+                <field name="clearance_amount_new" />
+                <field name="clearance_journal_id" />
+                <field name="un_cleared_amount" />
+                <field name="clearance_amount" />
+                <field name="clearance_currency" />
+                <field name="internal_transfer_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_action_loan_clearance" model="ir.actions.act_window">
+        <field name="name">Branch Loan Clearance</field>
+        <field name="res_model">branch.loan.clearanse</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">('is_branch_loans', '=', True)</field> -->
+    </record>
+    <menuitem
+        id="loan_clearanse_menu"
+        name="Branch Loan Clearance"
+        action="action_action_loan_clearance"
+        parent="srcs_financial_requests.Clearanse_menu"
+        sequence="2"/>
+
+</odoo>

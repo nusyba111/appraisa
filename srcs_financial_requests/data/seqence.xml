@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- payment request Sequence -->
+    <record id="payment_request_sequence" model="ir.sequence">
+        <field name="name">Payment Request Sequence</field>
+        <field name="code">payment.request</field>
+        <field name="prefix">payment/%(year)s/%(month)s/</field>
+        <field name="padding">4</field>
+    </record>   
+  
+    <!-- payment Clearance Sequence -->
+    <record id="payment_clearance_sequence" model="ir.sequence">
+        <field name="name">Custody Clearance No.</field>
+        <field name="code">custody.clearance.sequence</field>
+        <field name="prefix">Payment Clearance/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <!-- branch loan Clearance Sequence -->
+    <record id="branch_loan_clearance_sequence" model="ir.sequence">
+        <field name="name">Branch loan Clearance No.</field>
+        <field name="code">branch.loan.clearance</field>
+        <field name="prefix">Branch Loan Clearance/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <!-- Cash request Sequence -->
+    <record id="cash_request_sequence" model="ir.sequence">
+        <field name="name">Cash Request Sequence</field>
+        <field name="code">cash_request</field>
+        <field name="prefix">Cash Request/%(year)s/%(month)s/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <!-- Branch loan Sequence -->
+    <record id="branch_loan_sequence" model="ir.sequence">
+        <field name="name">Branch Loan Sequence</field>
+        <field name="code">branch_loan</field>
+        <field name="prefix">Branch Loan/%(year)s/%(month)s/</field>
+        <field name="padding">4</field>
+    </record>
+
+</odoo>

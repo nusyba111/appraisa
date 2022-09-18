@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_account_banking_reconciliation" model="ir.actions.report">
+        <field name="name">Bank Reconciliation</field>
+        <field name="model">bank.acc.rec.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account_banking_reconciliation.account_banking_reconciliation_template</field>
+        <field name="report_file">account_banking_reconciliation.account_banking_reconciliation_template</field>
+<<<<<<< HEAD
+        <!-- <field name="print_report_name">'%s' % object.name</field> -->
+        <field name="binding_model_id" ref="model_bank_acc_rec_statement"/>
+        <field name="binding_type">report</field></record>
+
+        <template id="account_banking_reconciliation_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                         <table class="table table-bordered">
+                    <tbody>
+                             <tr style="background-color:#d3d3d3">
+                                 <td colspan="1" style="border:2px solid black;">
+                                Sudanese  Red Crescent Society / Danish Red Cross</td>
+                                  <td colspan="3" style="border:2px solid black;"></td>
+                             </tr>
+                             <tr style="background-color:#d3d3d3">
+                                 <td colspan="1" style="border:2px solid black;">BANK RECONCILIATION FORM
+                                 </td>
+                                 <td colspan="3" style="border:2px solid black;"></td>
+                             </tr>
+                             <tr style="background-color:#d3d3d3">
+                                 <td colspan="1" style="border:2px solid black;">Date:</td>
+                                  <td colspan="3" style="border:2px solid black;"></td>
+                             </tr>
+                        <tr style="background-color:#d3d3d3">
+                                 <td colspan="1" style="border:2px solid black;">Month:</td>
+                                  <td colspan="3" style="border:2px solid black;"></td>
+                             </tr>
+                        <tr style="background-color:#d3d3d3">
+                                 <td colspan="1" style="border:2px solid black;">Bank Account No:</td>
+                                  <td colspan="3" style="border:2px solid black;"></td>
+                             </tr>
+                        <tr style="background-color:#d3d3d3">
+                                 <td colspan="1" style="border:2px solid black;">Account Currency:</td>
+                                  <td colspan="3" style="border:2px solid black;"></td>
+                             </tr>
+                        <tr>
+                           <td colspan="4" style="border:2px solid black;"></td>
+
+                        </tr>
+                            <tr style="background-color:#d3d3d3">
+                                 <td style="border:2px solid black;">Ending Balance Per Bank Statement:</td>
+                                  <td colspan="3" style="border:2px solid black;"></td>
+                             </tr>
+                                              <tr>
+                           <td colspan="4" style="border:2px solid black;"></td>
+                        </tr>
+                        <tr>
+                           <td style="border:2px solid black;">Add:</td>
+                             <td colspan="3" style="border:2px solid black;"></td>
+
+                        </tr>
+                        <tr>
+                           <td style="border:2px solid black;">transfer duplicated, Deposits not showing in the ledger:</td>
+                             <td colspan="3" style="border:2px solid black;"></td>
+
+                        </tr>
+                    </tbody>
+                         </table>
+
+                        <table class="table table-bordered" style="border:2px solid black;background-color:#d3d3d3">
+                            <thead>
+                            <th class="text-left;font-size:45px"  style="width: 50%;"></th>
+                            <th class="text-center;font-size:45px" style="width: 50%;">Description</th>
+                            <th class="text-center;font-size:45px" style="width: 50%;">Amount</th>
+
+                    </thead>
+                    <tbody>
+                            <t t-foreach="o.debit_move_line_ids" t-as="line">
+                             <tr>
+                                 <td style="border:2px solid black;"></td>
+                                 <td style="border:2px solid black;"><span t-esc="line.name"/></td>
+                                 <td style="border:2px solid black;"><span t-esc="line.amount"/></td>
+                             </tr>
+                            </t>
+                        <thead>
+                        <th colspan="2">Total</th>
+                            <th> </th>
+                    </thead>
+                    </tbody></table>
+
+                        <table class="table table-bordered" style="border:2px solid black;">
+                    <tbody>
+                             <tr>
+                                 <td colspan="3" style="border:2px solid black;"></td>
+
+                             </tr>
+                        <tr>
+                                 <td colspan="3" style="border:2px solid black;"></td>
+
+                             </tr>
+                        <tr>
+                                 <td style="border:2px solid black;">Less:</td>
+                                  <td style="border:2px solid black;"></td>
+                             </tr>
+                        <tr>
+                                 <td style="border:2px solid black;">Checks/Wires out/subtractions not recorded on the statement</td>
+                                  <td style="border:2px solid black;"></td>
+
+                        </tr><tr>
+                                 <td colspan="3" style="border:2px solid black;"></td>
+
+                        </tr>
+                    </tbody></table>
+
+                        <table class="table table-bordered" style="border:2px solid black;background-color:#d3d3d3">
+                            <thead>
+                            <th class="text-center;font-size:45px"  style="width: 50%;">Description</th>
+                            <th class="text-center;font-size:45px" style="width: 50%;">Cheque No.</th>
+                            <th class="text-center;font-size:45px" style="width: 50%;">Date</th>
+                            <th class="text-center;font-size:45px" style="width: 50%;">Amount</th>
+
+                    </thead>
+                    <tbody>
+                            <t t-foreach="o.credit_move_line_ids" t-as="line">
+                             <tr>
+                                 <td style="border:2px solid black;"><span t-esc="line.name"/></td>
+                                     <td style="border:2px solid black;"></td>
+                                 <td style="border:2px solid black;"><span t-esc="line.date"/></td>
+                                 <td style="border:2px solid black;"><span t-esc="line.amount"/></td>
+                             </tr>
+                            </t>
+                        <thead>
+                            <tr>
+                        <th colspan="3">Total</th>
+                            <th> </th>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                        <th colspan="2">Total</th>
+                            <th> Ending Balance Per General Ledger</th>
+                                <th colspan="2"> </th>
+                            </tr>
+                    </thead>
+                    </tbody></table>
+
+                        <table class="table table-bordered" style="border:2px solid black;">
+                    <tbody>
+                             <tr>
+                                 <td>Prepared by </td>
+                                 <td></td>
+                             </tr>
+                            <tr>
+                                 <td>Position</td>
+                                 <td><span t-esc="o.prepared_by_user_id.employee_id.job_id.name"/></td>
+
+                            </tr>
+                        <tr>
+                                 <td>Signature</td>
+                                 <td></td>
+
+                        </tr>
+                        <tr>
+                                 <td>Date</td>
+                                 <td></td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                                 <td>Approved by </td>
+                                 <td></td>
+                             </tr>
+                            <tr>
+                                 <td>Position</td>
+                                 <td><span t-esc="o.approved_date_by_user_id.employee_id.job_id.name"/></td>
+
+                            </tr>
+                        <tr>
+                                 <td>Signature</td>
+                                 <td></td>
+
+                        </tr>
+                        <tr>
+                                 <td>Date</td>
+                                 <td></td>
+
+                        </tr>
+                        <tr> <td colspan="2"></td></tr>
+                        <tr>
+                                 <td>Reviwed by</td>
+                                 <td></td>
+                             </tr>
+                            <tr>
+                                 <td>Position</td>
+                                 <td><span t-esc="o.reviewed_by_user_id.employee_id.job_id.name"/></td>
+
+                            </tr>
+                        <tr>
+                                 <td>Signature</td>
+                                 <td></td>
+                        </tr>
+                        <tr>
+                                 <td>Date</td>
+                                 <td></td>
+                        </tr>
+                    </tbody>
+                         </table>
+=======
+
+        <field name="binding_model_id" ref="model_bank_acc_rec_statement"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="account_banking_reconciliation_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <table class="table table-sm o_main_table">
+                            <tbody>
+                                <tr style="background-color:#d3d3d3">
+                                    <td colspan="1">
+                                        <strong>Sudanese Red Crescent Society /</strong>
+                                    </td>
+                                    <td class="text-center" colspan="2"></td>
+                                </tr>
+                                <tr style="background-color:#d3d3d3">
+                                    <td colspan="2">
+                                        <strong>BANK RECONCILIATION FORM</strong>
+                                    </td>
+                                    <td class="text-left" colspan="1"><span t-field="o.journal_id.name"/>/
+                                        <span t-field="o.journal_id.type"/>
+                                    </td>
+                                </tr>
+                                <tr style="background-color:#d3d3d3">
+                                    <td colspan="1">
+                                        <strong>Date:</strong>
+                                    </td>
+                                    <td colspan="2" class="text-left">
+                                        <span t-field="o.create_date"/>
+                                    </td>
+                                </tr>
+                                <tr style="background-color:#d3d3d3">
+                                    <td colspan="2">
+                                        <strong>Month:</strong>
+                                    </td>
+                                    <td class="text-left" colspan="1"></td>
+                                </tr>
+                                <tr style="background-color:#d3d3d3">
+                                    <td colspan="2">
+                                        <strong>Bank Account No:</strong>
+                                    </td>
+                                    <td class="text-left" colspan="1">
+                                        <span t-field="o.journal_id.bank_account_id.acc_number"/>
+                                    </td>
+                                </tr>
+                                <tr style="background-color:#d3d3d3">
+                                    <td colspan="1">
+                                        <strong>Account Currency:</strong>
+                                    </td>
+                                    <td colspan="2" class="text-left">
+                                        <span t-field="o.journal_id.currency_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left" colspan="3"></td>
+                                </tr>
+                                <tr style="background-color:#d3d3d3">
+                                    <td colspan="2">Ending Balance Per Bank Statement:
+                                    </td>
+                                    <td class="text-left" colspan="1">
+                                        <span t-field="o.ending_balance"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>Add:</td>
+                                    <td class="text-center" colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>transfer duplicated, Deposits not showing in the ledger:
+                                    </td>
+                                    <td class="text-center" colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table style="background-color:#d3d3d3" class="table table-sm o_main_table">
+                            <thead>
+<!--                                <th class="text-left;font-size:45px" style="width: 50%;"></th>-->
+                                <th class="text-center;font-size:45px" style="width: 50%;">Description</th>
+                                <th class="text-center;font-size:45px" style="width: 50%;">Amount</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.debit_move_line_ids" t-as="line" t-if="line.not_in_system==True">
+                                    <tr>
+<!--                                        <td class="text-left"></td>-->
+                                        <td class="text-left">
+                                            <span t-esc="line.name"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-esc="line.amount"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <thead>
+                                    <th>Total</th>
+                                    <th>
+                                        <span t-esc="o.total_debit_amount"/>
+                                    </th>
+                                </thead>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <table style="background-color:#d3d3d3" class="table table-sm o_main_table">
+                            <tbody>
+                                <tr>
+                                    <td colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>Less:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Checks/Wires out/subtractions not recorded on the statement
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="background-color:#d3d3d3" class="table table-sm o_main_table">
+                            <thead>
+                                <th class="text-center;font-size:45px" style="width: 50%;">Description</th>
+                                <th class="text-center;font-size:45px" style="width: 50%;">Cheque No.</th>
+                                <th class="text-center;font-size:45px" style="width: 50%;">Date</th>
+                                <th class="text-center;font-size:45px" style="width: 50%;">Amount</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.credit_move_line_ids" t-as="line" t-if="line.not_in_system==True">
+                                    <tr>
+                                        <td class="text-left">
+                                            <span t-esc="line.name"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-esc="line.check_no"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-esc="line.date"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-esc="line.amount"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <thead style="background-color:#d3d3d3">
+                                    <tr>
+                                        <th colspan="3">Total</th>
+                                        <th colspan="1">Total
+                                            <span t-esc="o.total_credit_amount"/>
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    <tr></tr>
+                                    <tr>
+                                        <th colspan="1">Total
+                                            <span t-esc="o.total_for_differance"/>
+                                        </th>
+                                        <th>Ending Balance Per General Ledger</th>
+                                        <th colspan="2"></th>
+                                    </tr>
+                                </thead>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-sm o_main_table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>Prepared by</strong>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o.prepared_by_user_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Position</strong>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])"
+                                           t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Signature</strong>
+                                    </td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Date</strong>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o.prepared_date"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <br/>
+                                <tr></tr>
+                                <tr>
+                                    <td>
+                                        <strong>Approved by</strong>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o.approved_date_by_user_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Position</strong>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Signature</strong>
+                                    </td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Date</strong>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o.approved_date"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr></tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <strong>Reviwed by</strong>
+                                    </td>
+                                    <td>
+                                        <td>
+                                            <span t-esc="o.reviewed_by_user_id.name"/>
+                                        </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Position</strong>
+                                    </td>
+                                    <td><t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t></td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Signature</strong>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Date</strong>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o.reviewed_date"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+                    </div>
+                </t>
+            </t>
+        </t>
+<<<<<<< HEAD
+        </template>
+=======
+    </template>
+>>>>>>> 38c8c1b6423fa61a6ac1a666891c83c6440bdb44
+</odoo>

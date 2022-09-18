@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="budgeting_menu"
+        name="Budgeting"
+        parent="account_accountant.menu_accounting"
+        sequence="5"/>
+    <menuitem
+        id="budget_operation_menu"
+        name="Budget Operation"
+        parent="accounting_srcs.budgeting_menu"
+        sequence="6"/>
+    <menuitem
+        id="budget_revison_menu"
+        parent="budget_operation_menu"
+        action="budget_revision_action"
+        sequence="3"/>
+
+    <menuitem
+        id="parent_conversion_menu"
+        name="Conversion"
+        parent="accounting_srcs.budgeting_menu"
+        sequence="6"/>
+    <menuitem
+        id="conversion_menu"
+        action="accounting_srcs.currency_conversion_action_view_name"
+        name="Currency Conversion"
+        parent="parent_conversion_menu"
+        sequence="1"/>
+    <menuitem 
+        id="account_budget.menu_budget_post_form"
+        action="account_budget.open_budget_post_form" 
+        parent="budget_operation_menu" 
+        sequence="2"/>
+    <menuitem
+        id="activity_menu"
+        name="Activities"
+        parent="budgeting_menu"
+        sequence="3"/>
+
+    <menuitem 
+        id="account.account_analytic_group_menu" 
+        name="Activities Hierarchy" 
+        action="analytic.account_analytic_group_action" 
+        groups="analytic.group_analytic_accounting" 
+        parent="activity_menu" 
+        sequence="3"/>
+    <menuitem 
+        id="account.menu_action_analytic_lines_tree" 
+        action="analytic.account_analytic_line_action_entries" 
+        groups="analytic.group_analytic_accounting" 
+        parent="account.account_management_menu" 
+        sequence="35"/>
+    <menuitem 
+        id="analytic.account_analytic_def_account" 
+        name="Output/Activity" 
+        action="analytic.action_account_analytic_account_form" 
+        groups="analytic.group_analytic_accounting" 
+        parent="accounting_srcs.activity_menu" 
+        sequence="1"/>
+    <menuitem
+        id="srcs_location_menu"
+        name="Location"
+        parent="budgeting_menu"
+        action="account_src_location_action"
+        sequence="2"
+        groups="analytic.group_analytic_accounting"/>
+    <menuitem 
+        id="account_budget.menu_act_crossovered_budget_view"
+        name="Budgets"
+        parent="accounting_srcs.budget_operation_menu"
+        action="account_budget.act_crossovered_budget_view" 
+        sequence="1"
+        groups="account.group_account_manager"/>
+    <menuitem
+        id="srcs_project_menu"
+        name="Project"
+        parent="budgeting_menu"
+        action="account_src_project_action"
+        sequence="1"
+        groups="analytic.group_analytic_accounting"/>
+
+    <menuitem
+        id="core_activity_menu"
+        name="Core Activity"
+        parent="activity_menu"
+        action="account_src_core_activity_action"
+        sequence="2"
+        groups="analytic.group_analytic_accounting"/>
+
+    <menuitem 
+        id="account.menu_product_product_categories" 
+        name="Items Categories" 
+        action="product.product_category_action_form" 
+        parent="account.account_management_menu" 
+        sequence="3" />
+    <menuitem 
+        id="account_reports.menu_action_report_account_analytic" 
+        name="Project Report" 
+        action="account_reports.action_account_report_analytic" 
+        parent="account.account_reports_management_menu" 
+        groups="analytic.group_analytic_accounting"/>
+    <menuitem 
+        id="account.product_product_menu_sellable" 
+        name="Items" 
+        action="account.product_product_action_sellable" 
+        parent="account.menu_finance_receivables" 
+        sequence="100"/>
+    <menuitem 
+        id="account.product_product_menu_purchasable" 
+        name="Items" 
+        action="account.product_product_action_purchasable" 
+        parent="account.menu_finance_payables" 
+        sequence="100"/>
+    <menuitem 
+        id="account.menu_action_account_moves_journal_sales" 
+        name="Revenues" 
+        action="account.action_account_moves_journal_sales" 
+        parent="account.menu_finance_entries_accounting_journals" 
+        groups="account.group_account_readonly" 
+        sequence="1"/>
+
+
+    <record model="ir.ui.menu" id="account.account_analytic_group_menu">
+        <field name='sequence'>4</field>
+    </record>
+    <record model="ir.ui.menu" id="account.menu_finance_receivables">
+        <field name='name'>Revenues</field>
+    </record>
+    <record model="ir.ui.menu" id="account.menu_account_customer">
+        <field name='name'>Donors</field>
+    </record>
+    <record model="ir.ui.menu" id="account.menu_action_move_out_invoice_type">
+        <field name='name'>Vouchers</field>
+    </record>
+
+     <record model="ir.ui.menu" id="account.menu_action_account_payments_receivable">
+        <field name='name'>Receipt</field>
+</record>  
+   
+</odoo>

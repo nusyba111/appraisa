@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+         <report id="red_invoice"
+            string="Invoice"
+            model="hr.applicant"
+            report_type="qweb-pdf"
+            name="hr_application_srcs.srcs_invoice"
+            file="hr_application_srcs.srcs_invoice"/>
+
+    <template id="srcs_invoice">
+     
+         <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="oe_structure">
+                        <div class="article mt0 o_report_layout_standard" dir="ltr"> 
+                        <!-- <u><h5 style='text-align:center;'><strong>Reference Request</strong></h5></u><br/>
+                        <p><strong>Dear:<span t-esc="o.frist_name"/></strong></p><br/>
+                        <p>Your name was given to us by<strong> <span t-esc="o.frist_name"/>.</strong>as reference,we have offered to him the position of <strong> <span t-esc="o.frist_name"/> </strong>with our society SRCS.<br/>We would very much apperciate your opinion of his suitability for this position,please give us your frank and honest opinion about him, we can assure you that any information you give will be treated confidentially. </p><br/> -->
+                                                            
+                                    <table class="table table-condensed table-white">
+                                      
+                                            <tr >
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Name: </td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+                                           </tr>
+                                           </table>
+                                    <!-- </table>
+                                    <p>Please return your completed reference, signed and scanned, to:<strong> <br/><span t-esc="o.frist_name"/></strong><br/>If you are unable to sign and scan please email the reference. Then post hard copy of signed reference or contact us to arrange collection.</p>
+                                    <table class="table table-condensed table-bordered" style="border:2px solid black;" t-att-colspan="2">
+                                      
+                                            <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Reference Name:</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+                                           </tr>
+                                           <tr style="border:2px solid black;">
+                                               <td class="text-left" style="border:2px solid black;width: 20%;">Reference Name:</td>
+                                               <td ><span t-esc="o.frist_name"/> </td>
+                                           </tr>
+                                       </table> -->
+                                 
+                                <t t-call="hr_application_srcs.custom_invoice_header" />
+                                <t t-call="hr_application_srcs.custom_invoice_footer" />
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+</odoo>    
+       
+    

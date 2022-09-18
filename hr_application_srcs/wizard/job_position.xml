@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+
+    <record id="view_wizard_position" model="ir.ui.view">
+      <field name="name">position.position.report</field>
+      <field name="model">position.position.report</field>
+      <field name="arch" type="xml">
+        <form string="Position">
+            <group>
+            <group>
+                <field name="from_date" />
+              </group>
+              <group>
+                <field name="to_date" />
+             </group>
+           </group>
+          <footer>
+            <button name = "print_report"  string="Print"  type="object" class="oe_highlight"/> or
+            <button string="Cancel" class="oe_link" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+      <record model="ir.ui.view" id="view_position_position_excel">
+            <field name="name">position.position.job.report.excel</field>
+            <field name="model">position.position.job.report.excel</field>
+            <field name="arch" type="xml">
+                <form string="File to Downloads">
+                        <field name="name" invisible="1"/>
+                        <field name="download_file" filename="name"/>
+                </form>
+            </field>
+        </record>
+
+    <record id="action_view_position_id" model="ir.actions.act_window">
+      <field name="name">Employees</field>
+      <field name="res_model">position.position.report</field>
+<!--      <field name="view_type">form</field>-->
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_wizard_position"/>
+      <field name="target">new</field>
+    </record>
+
+     <menuitem action="action_view_position_id" name="Monitoring Report" id="position_report" parent="hr_contract_reports.menu_report_contract_employee_all"/>
+
+
+  </data>
+</odoo>

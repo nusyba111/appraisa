@@ -1,0 +1,121 @@
+<odoo>
+    <record id="administration_srcs_office_lease_report" model="ir.actions.report">
+        <field name="name">Offices Lease</field>
+        <field name="model">office.lease</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">administration_srcs.office_lease_template</field>
+        <field name="report_file">administration_srcs.office_lease_template</field>
+        <field name="binding_model_id" ref="model_office_lease"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="office_lease_template">
+        <t t-call="web.html_container">
+<!--            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>-->
+        <t t-foreach="docs" t-as="o">
+        <div style="border:black solid 2px ; margin:10px">
+        <div class="article mt0 o_report_layout_standard" dir="rtl">
+            <p style="font-size:25px;text-align:center;">OFFICE LEASE AGREEMENT</p><br/>
+            <p style="font-size:25px;text-align:center;">Between</p><br/>
+             <p style="font-size:16px;text-align:left;"><t t-esc="o.first_partner_id.name"/>,
+                <t t-esc="o.first_partner_id.street"/> / <t t-esc="o.first_partner_id.street2"/> <t t-esc="o.first_partner_id.city"/> ,here in after Called SRCS
+             <br/>
+                         And
+             <br/>
+             <t t-esc="o.partner_id.name"/>,<t t-esc="o.partner_id.street"/> / <t t-esc="o.partner_id.street2"/>, <t t-esc="o.partner_id.city"/>, here in after"<t t-esc="o.partner_id.name"/>"
+             The Two Parties,<t t-esc="o.first_partner_id.name"/>and the <t t-esc="o.partner_id.name"/> had agreed on the following
+             </p><br/>
+            <u style="font-size:18px;text-align:left;">Article 1 Subject of the Agreement</u>
+            <p style="font-size:16px;text-align:center;"><t t-esc="o.first_partner_id.name"/>shall lease to the <t t-esc="o.partner_id.name"/> in accordance with the conditions hereunder,Rent of offices in the</p> <p> <t t-esc="o.location.location_number"/> in <t t-esc="o.company_id.name"/>compound,<t t-esc="o.location.address_id.street"/></p>
+            <u style="font-size:18px;text-align:left;">Article 2, Duration</u>
+            <p style="font-size:16px;text-align:center;"> The lease be initially for12 starting <t t-esc="o.start_date"/> and there after contracts can be extended on same conditions. the rent and services cost can be reviewed annually with mutual understanding of both parties considering the market</p>
+            <p>and economic situation of the country during the time of revision of the contract</p>
+            <u style="font-size:18px;text-align:left;">Article 3, obligations for <t t-esc="o.partner_id.name"/></u>
+            <p style="font-size:16px;text-align:center;">a)<t t-esc="o.partner_id.name"/>will pay <t t-esc="o.total_amount"/> per month on a quarterly basis include rent office and services cost such as the following</p>
+            <t t-set="i" t-value="1" />
+            <table class="table table-sm o_main_table">
+                    <thead>
+                        <th>Cost Per Month (Euro)</th>
+                        <th>Item</th>
+                         <th> No</th>
+                    </thead>
+                     <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                                 <t t-foreach="doc.lease_details" t-as="line">
+                                     <tr>
+                                 <td><span t-esc="line['cost']"/></td>
+                                 <td><span t-esc="line['item']"/></td>
+                                         <td>    <span t-esc="i"/>
+                                        <t t-set="i" t-value="i+1"/> </td>
+                                </tr> </t>
+                        </t>
+                         <thead>
+                           <th><span t-esc="doc['total_amount_items']"/></th>
+                        <th>Total</th>
+                               <th> </th>
+                    </thead>
+                    </tbody>
+                </table>
+            <p style="font-size:16px;text-align:left;">b)<t t-esc="o.partner_id.name"/> shall exercise proper care in using of premises and must be maintain and hand over the compound in the same situation</p>
+            <p style="font-size:16px;text-align:left;">c) The <t t-esc="o.partner_id.name"/> will pay the installation costs of any appropriate communication system, which must remain the property of the <t t-esc="o.first_partner_id.name"/></p>
+            <p style="font-size:16px;text-align:left;">d) <t t-esc="o.partner_id.name"/> has no right to change the shape of the estate unless approved from <t t-esc="o.first_partner_id.name"/></p>
+            <u style="font-size:20px;text-align:left;">Article 4, for srcs </u>
+            <p style="font-size:16px;text-align:left;">a) from date on which the lease is valid until the termination date,the <t t-esc="o.first_partner_id.name"/> take over subscription of the services cost(electricity, water supply, cleaning services,disposal and sewages,security and annual maintenance) which mentioned in article3</p>
+            <p style="font-size:16px;text-align:left;">b) <t t-esc="o.partner_id.name"/>  is further responsible for official procedures with local authorities, related to official documentary, if any requirement to pay all applicable taxes and impositions due to the government as related to the premises concerned  </p>
+            <u style="font-size:20px;text-align:left;">Article 5,Miscellaneous </u>
+            <p style="font-size:16px;text-align:left;">Any amendment to the articles mentioned above, and here it must be in writing, signed by the two parties and annexed to the current lease </p>
+            <u style="font-size:20px;text-align:left;">Article 6</u>
+            <p style="font-size:16px;text-align:left;">The <t t-esc="o.partner_id.name"/> will officially hand over all buildings of the <t t-esc="o.first_partner_id.name"/> upon leaving the compound, other items and equipment are subject to separate discussion between the parties and in accordance with standard procedures </p>
+            <u style="font-size:20px;text-align:left;">Article 7</u>
+            <p style="font-size:16px;text-align:left;">In the event of any dispute, the parties will consult with each other quickly.if any of the parties decides to terminate this agreement earlier than the end of the period specified,it must serve formal notice in writing to the party one month in advance,explaining the reason</p>
+            <u style="font-size:20px;text-align:left;">Article 8</u>
+            <p style="font-size:16px;text-align:left;">in the case of discrepancy,the English language text shall be considered as the only official version Have been signed this agreement and initialed by the parties in two versions this agreement has been signed and initiated in two copies for the two parties In witness where of, the present lease was signed in duplicate original in Khartoum on <t t-esc="o.date"/></p>
+<!--             <p style="font-size:16px;text-align:left;"> </p>-->
+<!--            <p style="font-size:20px;text-align:left;">-->
+<div dir="ltr">
+            <table>
+<!--                      <t t-foreach="docs" t-as="doc">-->
+                  <tr>
+                          <td style="width:20%" scope="col">The SRCS</td>
+                  <td style="width:20%" scope="col">The <span t-esc="o.partner_id.name"/></td>
+
+                  </tr>
+
+                  <tr>
+                        <td style="width:26%"><span t-esc="o.first_partner_id.name"/></td>
+                       <td style="width:26%">  </td>
+
+                  </tr>
+                          <tr>
+                              <td class="text-left" style="width:20%" scope="col">Secretary General</td>
+                              <td class="text-left" style="width:20%" scope="col">Country Representative</td>
+
+                          </tr>
+                           <tr>
+                              <td class="text-left" style="width:20%" scope="col"> </td>
+                              <td class="text-left" style="width:20%" scope="col"><span t-esc="o.first_partner_id.name"/></td>
+                          </tr>
+                          <tr>
+                              <td class="text-left" style="width:20%" scope="col"><span t-esc="o.first_partner_id.city"/></td>
+                          <td class="text-left" style="width:20%" scope="col"><span t-esc="o.partner_id.city"/></td></tr>
+                          <tr>
+
+                              <td class="text-left" style="width:20%" scope="col">Witnesses</td>
+                                <td class="text-left" style="width:20%" scope="col"> </td>
+                          </tr>
+                          <tr><td class="text-left" scope="col">...............................................</td>
+                  <td class="text-left" scope="col">...............................................</td>
+                          </tr>
+                          <tr>
+                                  <td class="text-left" style="width:50%" scope="col">Signature</td>
+                      <td class="text-left" style="width:50%" scope="col">Signature</td>
+                          </tr>
+
+<!--                      </t>-->
+            </table></div>
+
+
+        </div>
+        </div>
+        </t>
+        </t>
+    </template></odoo>
